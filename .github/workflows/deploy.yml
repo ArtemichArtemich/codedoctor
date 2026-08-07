@@ -13,9 +13,6 @@ jobs:
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
-        with:
-          # Используем Node.js 24
-          node-version: '24'
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
