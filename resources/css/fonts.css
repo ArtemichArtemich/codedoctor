@@ -1,0 +1,77 @@
+/* 
+ * ТОЛЬКО КРИТИЧЕСКИЕ ШРИФТЫ для загрузки 
+ * Regular (400) и Bold (700) - остальные по требованию
+ */
+
+/* Inter Regular (400) - КРИТИЧЕСКИЙ */
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter-regular.woff2') format('woff2');
+    font-weight: 400;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Inter Bold (700) - КРИТИЧЕСКИЙ */
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter-bold.woff2') format('woff2');
+    font-weight: 700;
+    font-style: normal;
+    font-display: swap;
+}
+
+/* Inter Light (300) - НЕ КРИТИЧЕСКИЙ */
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter-light.woff2') format('woff2');
+    font-weight: 300;
+    font-style: normal;
+    font-display: optional; /* ⚡ Изменено с swap на optional */
+}
+
+/* Inter Medium (500) - НЕ КРИТИЧЕСКИЙ */
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter-medium.woff2') format('woff2');
+    font-weight: 500;
+    font-style: normal;
+    font-display: optional; /* ⚡ Изменено */
+}
+
+/* Inter SemiBold (600) - НЕ КРИТИЧЕСКИЙ */
+@font-face {
+    font-family: 'Inter';
+    src: url('../fonts/inter-semibold.woff2') format('woff2');
+    font-weight: 600;
+    font-style: normal;
+    font-display: optional; /* ⚡ Изменено */
+}
+
+/* УДАЛИТЬ TTF файлы из папки resources/fonts/ если они там есть! */
+/* Они занимают 2-3 МБ и не нужны для современных браузеров */
+
+/* CSS переменные для удобства */
+:root {
+    --font-family: 'Inter', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, sans-serif;
+    --font-weight-light: 300;
+    --font-weight-regular: 400;
+    --font-weight-medium: 500;
+    --font-weight-semibold: 600;
+    --font-weight-bold: 700;
+}
+
+/* Базовые стили */
+body {
+    font-family: var(--font-family);
+    font-weight: var(--font-weight-regular);
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+}
+
+/* Утилиты для весов шрифта */
+.font-light { font-weight: 300 !important; }
+.font-regular { font-weight: 400 !important; }
+.font-medium { font-weight: 500 !important; }
+.font-semibold { font-weight: 600 !important; }
+.font-bold { font-weight: 700 !important; }

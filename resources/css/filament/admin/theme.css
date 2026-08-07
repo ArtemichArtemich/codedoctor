@@ -1,0 +1,165 @@
+@import '../../../../vendor/filament/filament/resources/css/theme.css';
+
+@config '../../../../tailwind.config.js';
+
+.dark {
+    --gray-50: 23, 23, 23;
+    --gray-100: 36, 36, 36;
+    --gray-200: 48, 48, 48;
+    --gray-300: 64, 64, 64;
+    --gray-400: 82, 82, 82;
+    --gray-500: 115, 115, 115;
+    --gray-600: 163, 163, 163;
+    --gray-700: 212, 212, 212;
+    --gray-800: 237, 237, 237;
+    --gray-900: 250, 250, 250;
+    
+    /* Фон как на сайте: #0F1714 */
+    --background: 15, 23, 20;
+}
+
+/* Кастомные стили для Filament */
+.fi-sidebar {
+    background-color: #0F1714 !important;
+    border-right: 1px solid rgba(255,255,255,0.1);
+}
+
+.fi-main-ctn {
+    background-color: #0F1714 !important;
+}
+
+.fi-topbar {
+    background-color: #0F1714 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.fi-btn {
+    color: rgba(255,255,255,0.75) !important;
+}
+
+.fi-btn:hover {
+    color: #FFFFFF !important;
+    background-color: rgba(16, 185, 129, 0.1) !important;
+}
+
+.fi-dropdown-panel {
+    background-color: #1B2B25 !important;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.fi-input {
+    background-color: #1B2B25 !important;
+    border-color: rgba(255,255,255,0.1) !important;
+    color: white !important;
+}
+
+.fi-input:focus {
+    border-color: #10b981 !important;
+}
+
+/* Акцентный цвет */
+.fi-btn-primary {
+    background-color: #10b981 !important;
+}
+
+.fi-btn-primary:hover {
+    background-color: #059669 !important;
+}
+
+/* Карточки и секции */
+.fi-section {
+    background-color: #1B2B25 !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+}
+
+.fi-card {
+    background-color: #1B2B25 !important;
+    border: 1px solid rgba(255,255,255,0.05) !important;
+}
+
+/* Таблицы */
+.fi-ta-table {
+    background-color: #1B2B25 !important;
+}
+
+.fi-ta-table th {
+    background-color: #0F1714 !important;
+    color: rgba(255,255,255,0.75) !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1) !important;
+}
+
+.fi-ta-table td {
+    border-bottom: 1px solid rgba(255,255,255,0.05) !important;
+    color: white !important;
+}
+
+.fi-ta-table tr:hover td {
+    background-color: rgba(16, 185, 129, 0.05) !important;
+}
+
+/* Бейджи */
+.fi-badge {
+    background-color: rgba(16, 185, 129, 0.1) !important;
+    color: #10b981 !important;
+}
+
+/* Модальные окна */
+.fi-modal-window {
+    background-color: #1B2B25 !important;
+    border: 1px solid rgba(255,255,255,0.1);
+}
+
+.fi-modal-header {
+    background-color: #0F1714 !important;
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+/* Tabs */
+.fi-tabs {
+    border-bottom: 1px solid rgba(255,255,255,0.1);
+}
+
+.fi-tabs-item {
+    color: rgba(255,255,255,0.75) !important;
+}
+
+.fi-tabs-item-active {
+    color: #10b981 !important;
+    border-bottom-color: #10b981 !important;
+}
+
+/* File upload */
+.fi-file-upload {
+    background-color: #0F1714 !important;
+    border: 2px dashed rgba(16, 185, 129, 0.3) !important;
+}
+
+.fi-file-upload:hover {
+    border-color: #10b981 !important;
+}
+
+/* Уведомления */
+.fi-notification {
+    background-color: #1B2B25 !important;
+    border-left: 3px solid #10b981 !important;
+    color: white !important;
+}
+
+/* Скроллбар */
+::-webkit-scrollbar {
+    width: 8px;
+    height: 8px;
+}
+
+::-webkit-scrollbar-track {
+    background: #0F1714;
+}
+
+::-webkit-scrollbar-thumb {
+    background: #10b981;
+    border-radius: 4px;
+}
+
+::-webkit-scrollbar-thumb:hover {
+    background: #059669;
+}

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<svg width="64" height="64" viewBox="0 0 64 64" xmlns="http://www.w3.org/2000/svg">
+    <style>
+        .background { fill: #0F1714; }
+        .accent { fill: #F6C945; }
+        .text { fill: #FFFFFF; font-family: 'Inter', sans-serif; font-weight: 700; }
+    </style>
+    <rect width="64" height="64" rx="12" class="background"/>
+    <text x="32" y="38" text-anchor="middle" class="text" font-size="24">А</text>
+    <circle cx="50" cy="14" r="4" class="accent"/>
+</svg>
