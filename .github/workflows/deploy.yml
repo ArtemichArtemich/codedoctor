@@ -7,18 +7,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 15
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v5
-
-      - name: Create Laravel cache directories
-        run: |
-          mkdir -p bootstrap/cache
-          mkdir -p storage/framework/cache
-          mkdir -p storage/framework/sessions
-          mkdir -p storage/framework/views
-          chmod -R 775 bootstrap/cache storage/framework
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -31,41 +24,51 @@ jobs:
         with:
           node-version: '24'
 
-      - name: Install Composer dependencies
-        run: composer install --no-dev --optimize-autoloader
-
       - name: Install NPM dependencies
-        run: npm install
+        run: npm ci
 
       - name: Build frontend
         run: npm run build
 
-      - name: Prepare deployment package
+      - name: Prepare deploy directory
         run: |
-          tar -czf deploy.tar.gz \
-            --exclude='storage/logs/*' \
-            --exclude='storage/framework/sessions/*' \
-            --exclude='storage/framework/views/*' \
-            --exclude='storage/framework/cache/*' \
-            app \
-            bootstrap \
-            config \
-            database \
-            lang \
-            public \
-            resources \
-            routes \
-            storage \
-            vendor \
-            artisan \
-            composer.json \
-            composer.lock \
-            package.json \
-            package-lock.json \
-            postcss.config.js \
-            tailwind.config.js \
-            vite.config.js \
-            .htaccess
+          rm -rf deploy
+          mkdir -p deploy
+
+          rsync -av \
+            --exclude='.git' \
+            --exclude='.github' \
+            --exclude='node_modules' \
+            --exclude='vendor' \
+            --exclude='.env' \
+            --exclude='.env.*' \
+            --exclude='storage/logs' \
+            --exclude='storage/framework/cache' \
+            --exclude='storage/framework/sessions' \
+            --exclude='storage/framework/views' \
+            --exclude='tests' \
+            --exclude='deploy' \
+            --exclude='deploy.tar.gz' \
+            --exclude='.ftp-deploy-sync-state.json' \
+            ./ deploy/
+
+          mkdir -p deploy/bootstrap/cache
+          mkdir -p deploy/storage/app
+          mkdir -p deploy/storage/framework/cache
+          mkdir -p deploy/storage/framework/sessions
+          mkdir -p deploy/storage/framework/views
+          mkdir -p deploy/storage/logs
+
+      - name: Check deploy directory
+        run: |
+          echo "Files prepared for deploy:"
+          find deploy -type f | wc -l
+
+          echo "Checking excluded directories:"
+          if [ -d deploy/node_modules ]; then echo "ERROR: node_modules exists"; exit 1; fi
+          if [ -d deploy/vendor ]; then echo "ERROR: vendor exists"; exit 1; fi
+          if [ -d deploy/.git ]; then echo "ERROR: .git exists"; exit 1; fi
+          if [ -f deploy/.env ]; then echo "ERROR: .env exists"; exit 1; fi
 
       - name: Deploy to REG.RU via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -73,21 +76,22 @@ jobs:
           server: ${{ secrets.FTP_HOST }}
           username: ${{ secrets.FTP_USERNAME }}
           password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./
+          local-dir: ./deploy/
           server-dir: /www/code-doctor.ru/
           exclude: |
-            .git/
-            .github/
-            node_modules/
-            vendor/
-            .env
-            .env.*
-            *.log
-            deploy.tar.gz
-            .ftp-deploy-sync-state.json
-            storage/
+            **/.git*
+            **/.git*/**
+            **/node_modules/**
+            **/vendor/**
+            **/.env
+            **/.env.*
+            **/storage/logs/**
+            **/storage/framework/cache/**
+            **/storage/framework/sessions/**
+            **/storage/framework/views/**
+            **/.ftp-deploy-sync-state.json
 
-      - name: Run migrations on server
+      - name: Install Composer dependencies and optimize Laravel
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -95,6 +99,18 @@ jobs:
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
             cd ~/www/code-doctor.ru
+
+            composer install --no-dev --optimize-autoloader
+
+            mkdir -p bootstrap/cache
+            mkdir -p storage/app
+            mkdir -p storage/framework/cache
+            mkdir -p storage/framework/sessions
+            mkdir -p storage/framework/views
+            mkdir -p storage/logs
+
+            chmod -R 775 bootstrap/cache storage/framework storage/logs
+
             php artisan migrate --force
             php artisan config:cache
             php artisan route:cache
