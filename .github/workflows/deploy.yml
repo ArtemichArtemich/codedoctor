@@ -121,7 +121,6 @@ jobs:
             **/.env
             **/.env.*
             **/storage/**
-            **/.ftp-deploy-sync-state.json
 
       - name: Install Composer dependencies and optimize Laravel on server
         uses: appleboy/ssh-action@v1.0.3
