@@ -2,7 +2,8 @@ name: Deploy to REG.RU
 
 on:
   push:
-    branches: [ main ]
+    branches:
+      - main
 
 jobs:
   deploy:
@@ -18,6 +19,7 @@ jobs:
         with:
           php-version: '8.2'
           extensions: mbstring, pdo_mysql, bcmath, intl, fileinfo, zip
+          tools: composer
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -25,8 +27,18 @@ jobs:
           node-version: '22'
           cache: 'npm'
 
+      - name: Prepare Laravel directories for build
+        run: |
+          mkdir -p bootstrap/cache
+          mkdir -p storage/app
+          mkdir -p storage/framework/cache
+          mkdir -p storage/framework/sessions
+          mkdir -p storage/framework/views
+          mkdir -p storage/logs
+          chmod -R 775 bootstrap/cache storage
+
       - name: Install Composer dependencies for build
-        run: composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+        run: composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction --no-scripts
 
       - name: Install NPM dependencies
         run: npm ci
@@ -46,10 +58,7 @@ jobs:
             --exclude='vendor' \
             --exclude='.env' \
             --exclude='.env.*' \
-            --exclude='storage/logs' \
-            --exclude='storage/framework/cache' \
-            --exclude='storage/framework/sessions' \
-            --exclude='storage/framework/views' \
+            --exclude='storage' \
             --exclude='tests' \
             --exclude='deploy' \
             --exclude='deploy.tar.gz' \
@@ -57,22 +66,43 @@ jobs:
             ./ deploy/
 
           mkdir -p deploy/bootstrap/cache
-          mkdir -p deploy/storage/app
-          mkdir -p deploy/storage/framework/cache
-          mkdir -p deploy/storage/framework/sessions
-          mkdir -p deploy/storage/framework/views
-          mkdir -p deploy/storage/logs
 
       - name: Check deploy directory
         run: |
           echo "Files prepared for deploy:"
           find deploy -type f | wc -l
 
-          echo "Checking excluded directories:"
-          if [ -d deploy/node_modules ]; then echo "ERROR: node_modules exists"; exit 1; fi
-          if [ -d deploy/vendor ]; then echo "ERROR: vendor exists"; exit 1; fi
-          if [ -d deploy/.git ]; then echo "ERROR: .git exists"; exit 1; fi
-          if [ -f deploy/.env ]; then echo "ERROR: .env exists"; exit 1; fi
+          echo "Checking excluded files and directories..."
+
+          if [ -d deploy/node_modules ]; then
+            echo "ERROR: node_modules exists in deploy directory"
+            exit 1
+          fi
+
+          if [ -d deploy/vendor ]; then
+            echo "ERROR: vendor exists in deploy directory"
+            exit 1
+          fi
+
+          if [ -d deploy/.git ]; then
+            echo "ERROR: .git exists in deploy directory"
+            exit 1
+          fi
+
+          if [ -d deploy/.github ]; then
+            echo "ERROR: .github exists in deploy directory"
+            exit 1
+          fi
+
+          if [ -f deploy/.env ]; then
+            echo "ERROR: .env exists in deploy directory"
+            exit 1
+          fi
+
+          if [ -d deploy/storage ]; then
+            echo "ERROR: storage exists in deploy directory"
+            exit 1
+          fi
 
       - name: Deploy to REG.RU via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
@@ -85,14 +115,12 @@ jobs:
           exclude: |
             **/.git*
             **/.git*/**
+            **/.github/**
             **/node_modules/**
             **/vendor/**
             **/.env
             **/.env.*
-            **/storage/logs/**
-            **/storage/framework/cache/**
-            **/storage/framework/sessions/**
-            **/storage/framework/views/**
+            **/storage/**
             **/.ftp-deploy-sync-state.json
 
       - name: Install Composer dependencies and optimize Laravel on server
@@ -104,8 +132,6 @@ jobs:
           script: |
             cd ~/www/code-doctor.ru
 
-            composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
-
             mkdir -p bootstrap/cache
             mkdir -p storage/app
             mkdir -p storage/framework/cache
@@ -113,7 +139,9 @@ jobs:
             mkdir -p storage/framework/views
             mkdir -p storage/logs
 
-            chmod -R 775 bootstrap/cache storage/framework storage/logs
+            chmod -R 775 bootstrap/cache storage
+
+            composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
 
             php artisan config:clear
             php artisan cache:clear
