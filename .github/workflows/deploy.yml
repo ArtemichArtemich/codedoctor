@@ -84,6 +84,7 @@ jobs:
             .env.*
             *.log
             deploy.tar.gz
+            .ftp-deploy-sync-state.json
 
       - name: Run migrations on server
         uses: appleboy/ssh-action@v1.0.3
