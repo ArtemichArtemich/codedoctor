@@ -43,6 +43,10 @@ jobs:
       - name: Prepare deployment package
         run: |
           tar -czf deploy.tar.gz \
+            --exclude='storage/logs/*' \
+            --exclude='storage/framework/sessions/*' \
+            --exclude='storage/framework/views/*' \
+            --exclude='storage/framework/cache/*' \
             app \
             bootstrap \
             config \
@@ -61,11 +65,7 @@ jobs:
             postcss.config.js \
             tailwind.config.js \
             vite.config.js \
-            .htaccess \
-            --exclude='storage/logs/*' \
-            --exclude='storage/framework/sessions/*' \
-            --exclude='storage/framework/views/*' \
-            --exclude='storage/framework/cache/*'
+            .htaccess
 
       - name: Deploy to REG.RU via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
