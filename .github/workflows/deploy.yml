@@ -12,10 +12,13 @@ jobs:
       - name: Checkout code
         uses: actions/checkout@v5
 
-      - name: Create bootstrap/cache directory
+      - name: Create Laravel cache directories
         run: |
           mkdir -p bootstrap/cache
-          chmod -R 775 bootstrap/cache
+          mkdir -p storage/framework/cache
+          mkdir -p storage/framework/sessions
+          mkdir -p storage/framework/views
+          chmod -R 775 bootstrap/cache storage/framework
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
