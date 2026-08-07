@@ -7,10 +7,15 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    env:
+      FORCE_JAVASCRIPT_ACTIONS_TO_NODE24: true
 
     steps:
       - name: Checkout code
         uses: actions/checkout@v4
+        with:
+          # Используем Node.js 24
+          node-version: '24'
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -21,7 +26,7 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20.12.0'
+          node-version: '24'
 
       - name: Install Composer dependencies
         run: composer install --no-dev --optimize-autoloader
