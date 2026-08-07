@@ -7,11 +7,11 @@ on:
 jobs:
   deploy:
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
 
     steps:
       - name: Checkout code
-        uses: actions/checkout@v5
+        uses: actions/checkout@v4
 
       - name: Setup PHP
         uses: shivammathur/setup-php@v2
@@ -20,9 +20,13 @@ jobs:
           extensions: mbstring, pdo_mysql, bcmath, intl, fileinfo, zip
 
       - name: Setup Node.js
-        uses: actions/setup-node@v5
+        uses: actions/setup-node@v4
         with:
-          node-version: '24'
+          node-version: '22'
+          cache: 'npm'
+
+      - name: Install Composer dependencies for build
+        run: composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
 
       - name: Install NPM dependencies
         run: npm ci
@@ -91,7 +95,7 @@ jobs:
             **/storage/framework/views/**
             **/.ftp-deploy-sync-state.json
 
-      - name: Install Composer dependencies and optimize Laravel
+      - name: Install Composer dependencies and optimize Laravel on server
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
@@ -100,7 +104,7 @@ jobs:
           script: |
             cd ~/www/code-doctor.ru
 
-            composer install --no-dev --optimize-autoloader
+            composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
 
             mkdir -p bootstrap/cache
             mkdir -p storage/app
@@ -111,7 +115,13 @@ jobs:
 
             chmod -R 775 bootstrap/cache storage/framework storage/logs
 
+            php artisan config:clear
+            php artisan cache:clear
+            php artisan route:clear
+            php artisan view:clear
+
             php artisan migrate --force
+
             php artisan config:cache
             php artisan route:cache
             php artisan view:cache
