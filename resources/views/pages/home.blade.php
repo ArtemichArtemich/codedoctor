@@ -6,7 +6,7 @@
 @section('content')
 
     <!-- HERO -->
-    <section class="relative overflow-hidden py-6 md:py-16 z-10 11111888">
+    <section class="relative overflow-hidden py-6 md:py-16 z-10 111118888">
         <div class="container">
             <div class="grid md:grid-cols-2 gap-12 items-center">
                 <!-- Текст -->

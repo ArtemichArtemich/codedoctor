@@ -67,6 +67,9 @@ jobs:
 
           mkdir -p deploy/bootstrap/cache
 
+          echo "DEPLOY SHA: $GITHUB_SHA" > deploy/DEPLOY_MARKER.txt
+          echo "DEPLOY TIME: $(date)" >> deploy/DEPLOY_MARKER.txt
+
       - name: Check deploy directory
         run: |
           echo "Files prepared for deploy:"
@@ -151,4 +154,3 @@ jobs:
 
             php artisan config:cache
             php artisan route:cache
-            php artisan view:cache
