@@ -18,4 +18,8 @@ class Contact extends Model
         'user_agent',
         'privacy_agreed'
     ];
+
+    protected $casts = [
+        'privacy_agreed' => 'boolean',
+    ];
 }

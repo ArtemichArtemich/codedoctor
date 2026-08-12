@@ -39,7 +39,7 @@ class Service extends Model
         'is_active' => 'boolean',
     ];
 
-    public function getUrlAttribute()
+    public function getUrlAttribute(): string
     {
         return '/services/' . $this->slug;
     }

@@ -1,10 +1,23 @@
 <section class="py-20 bg-card/30 relative group">
     <div class="container">
-        <h2 class="text-3xl md:text-4xl font-bold text-center mb-12">С кем работаю</h2>
-        <p class="text-center text-text-secondary mb-12 max-w-2xl mx-auto">
-            Реализовал проекты для компаний разных сфер: от премиальных брендов 
-            до технологических стартапов
-        </p>
+        <div class="text-center mb-12">
+
+            <div class="inline-flex items-center px-4 py-2 bg-accent/10 border border-accent/30 rounded-full mb-6">
+                <span class="text-accent font-medium">
+                    Опыт работы
+                </span>
+            </div>
+
+            <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                С какими проектами работал
+            </h2>
+
+            <p class="text-text-secondary text-lg max-w-2xl mx-auto">
+                Интернет-магазины, сайты производителей, каталоги и веб-сервисы.
+                Часть проектов поддерживаю и развиваю на протяжении нескольких лет.
+            </p>
+
+        </div>
         
         <div class="relative overflow-hidden">
             <!-- Карусель -->

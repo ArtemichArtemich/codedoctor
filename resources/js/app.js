@@ -10,6 +10,15 @@ document.addEventListener('DOMContentLoaded', function() {
             mobileMenu.classList.toggle('hidden');
         });
     }
+
+    // Закрытие мобильного меню при клике на якорные ссылки (только на главной)
+    document.querySelectorAll('#mobile-menu a[href*="#"]').forEach(link => {
+        link.addEventListener('click', () => {
+            if (window.location.pathname === '/') {
+                document.getElementById('mobile-menu').classList.add('hidden');
+            }
+        });
+    });
     
     // 2. Плавная навигация
     document.querySelectorAll('a[href^="#"]').forEach(anchor => {

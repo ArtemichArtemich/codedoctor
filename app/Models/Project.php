@@ -27,7 +27,7 @@ class Project extends Model
         'is_active' => 'boolean',
     ];
 
-    public function getUrlAttribute()
+    public function getUrlAttribute(): string
     {
         return '/cases/' . $this->slug;
     }

@@ -7,16 +7,22 @@ use Illuminate\Database\Eloquent\Model;
 class Page extends Model
 {
     protected $fillable = [
-        'slug', 'title', 'h1', 'content', 
-        'meta_title', 'meta_description', 'meta_keywords',
-        'is_active', 'sort'
+        'slug',
+        'title',
+        'h1',
+        'content',
+        'meta_title',
+        'meta_description',
+        'meta_keywords',
+        'is_active',
+        'sort',
     ];
 
     protected $casts = [
         'is_active' => 'boolean',
     ];
 
-    public function getUrlAttribute()
+    public function getUrlAttribute(): string
     {
         return '/' . $this->slug;
     }

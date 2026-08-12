@@ -2,15 +2,17 @@
 
 namespace App\Http\Controllers;
 
-use Illuminate\Http\Request;
-use App\Data\CasesData;
+use App\Models\Project;
 
 class HomeController extends Controller
 {
     public function index()
     {
-        $cases = CasesData::all();
-        // dd($cases);
+        $cases = Project::where('is_active', true)
+            ->orderBy('sort')
+            ->limit(6)
+            ->get();
+
         return view('pages.home', compact('cases'));
     }
 }

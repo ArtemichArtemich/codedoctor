@@ -1,253 +1,497 @@
 @extends('layouts.app')
 
-@section('title', ($service->meta_title ?? $service->title) . ' | Услуги')
-@section('description', \Illuminate\Support\Str::limit($service->meta_description ?? $service->short_description ?? strip_tags($service->description), 155))
+@section('title', ($service->meta_title ?? $service->title) . ' | Code Doctor')
+
+@section(
+    'description',
+    \Illuminate\Support\Str::limit(
+        $service->meta_description
+        ?? $service->short_description
+        ?? strip_tags($service->description),
+        155
+    )
+)
 
 @section('content')
-<section class="py-12 md:py-20">
+
+<section class="py-20">
+
     <div class="container">
+
         <!-- Хлебные крошки -->
         <div class="mb-8">
+
             <nav class="flex" aria-label="Breadcrumb">
+
                 <ol class="inline-flex items-center space-x-1 md:space-x-3">
+
                     <li class="inline-flex items-center">
-                        <a href="/" class="inline-flex items-center text-sm text-text-secondary hover:text-accent">
-                            <svg class="w-4 h-4 mr-2" fill="currentColor" viewBox="0 0 20 20">
-                                <path d="M10.707 2.293a1 1 0 00-1.414 0l-7 7a1 1 0 001.414 1.414L4 10.414V17a1 1 0 001 1h2a1 1 0 001-1v-2a1 1 0 011-1h2a1 1 0 011 1v2a1 1 0 001 1h2a1 1 0 001-1v-6.586l.293.293a1 1 0 001.414-1.414l-7-7z"></path>
-                            </svg>
+
+                        <a href="/"
+                           class="inline-flex items-center text-sm text-text-secondary hover:text-accent">
+
                             Главная
+
                         </a>
+
                     </li>
+
                     <li>
-                        <div class="flex items-center">
-                            <svg class="w-6 h-6 text-text-tertiary" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            <a href="{{ route('services.index') }}" class="ml-1 text-sm text-text-secondary hover:text-accent">Услуги</a>
-                        </div>
+                        <span class="text-text-tertiary">
+                            /
+                        </span>
                     </li>
+
                     <li>
-                        <div class="flex items-center">
-                            <svg class="w-6 h-6 text-text-tertiary" fill="currentColor" viewBox="0 0 20 20">
-                                <path fill-rule="evenodd" d="M7.293 14.707a1 1 0 010-1.414L10.586 10 7.293 6.707a1 1 0 011.414-1.414l4 4a1 1 0 010 1.414l-4 4a1 1 0 01-1.414 0z" clip-rule="evenodd"></path>
-                            </svg>
-                            <span class="ml-1 text-sm text-text-primary font-medium">{{ $service->h1 ?? $service->title }}</span>
-                        </div>
+
+                        <a href="{{ route('services.index') }}"
+                           class="text-sm text-text-secondary hover:text-accent">
+
+                            Услуги
+
+                        </a>
+
                     </li>
+
+                    <li>
+                        <span class="text-text-tertiary">
+                            /
+                        </span>
+                    </li>
+
+                    <li>
+
+                        <span class="text-sm text-text-primary">
+                            {{ $service->title }}
+                        </span>
+
+                    </li>
+
                 </ol>
+
             </nav>
+
         </div>
-        
-        <!-- Заголовок с иконкой -->
-        <div class="mb-12 flex items-center gap-4">
-            @if($service->icon)
-            <div class="w-16 h-16 rounded-2xl bg-card/40 backdrop-blur-sm border border-white/10 flex items-center justify-center overflow-hidden p-3">
-                <img src="{{ asset('storage/' . $service->icon) }}" 
-                     alt="{{ $service->title }}"
-                     class="w-full h-full object-contain">
+
+
+        <!-- Первый экран -->
+        <div class="mb-12">
+
+            <div class="inline-flex items-center px-4 py-2 bg-accent/10 border border-accent/30 rounded-full mb-6">
+                <span class="text-accent font-medium">
+                    Услуга
+                </span>
             </div>
-            @endif
-            <div>
-                <h1 class="text-4xl md:text-5xl font-bold">{{ $service->h1 ?? $service->title }}</h1>
-                @if($service->short_description)
-                <p class="text-xl text-text-secondary max-w-3xl mt-4">
+
+            <h1 class="text-3xl md:text-4xl font-bold mb-6 max-w-4xl">
+                {{ $service->h1 ?? $service->title }}
+            </h1>
+
+
+            @if($service->short_description)
+
+                <p class="text-xl text-text-secondary max-w-3xl mb-6">
                     {{ $service->short_description }}
                 </p>
+
+            @endif
+
+
+            <div class="flex flex-wrap gap-4">
+
+                @if($service->price_from)
+
+                    <div class="bg-card p-4 rounded-xl border border-white/5">
+
+                        <div class="text-sm text-text-secondary mb-1">
+                            Стоимость
+                        </div>
+
+                        <div class="text-xl font-bold text-accent">
+                            {{ $service->price_from }}
+                        </div>
+
+                    </div>
+
                 @endif
+
+
+                <a href="/#contacts"
+                   data-goal="service_cta_click"
+                   data-service="{{ $service->slug }}"
+                   class="inline-block px-8 py-4 bg-accent text-background font-bold rounded-xl hover:bg-accent/90 transition">
+
+                    Обсудить задачу
+
+                </a>
+
             </div>
+
         </div>
-        
-        <!-- Галерея изображений -->
-        @if(isset($service->images) && is_array($service->images) && count($service->images) > 0)
-        <div class="mb-12">
-            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
-                @foreach($service->images as $image)
-                <div class="relative group cursor-pointer" onclick="openModal('{{ asset('storage/' . $image) }}')">
-                    <img src="{{ asset('storage/' . $image) }}" 
-                         alt="{{ $service->title }}"
-                         class="w-full h-48 object-cover rounded-2xl border border-white/10 group-hover:border-accent/50 transition-all duration-300">
-                    <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex items-center justify-center">
-                        <span class="text-white text-sm">Увеличить</span>
-                    </div>
-                </div>
-                @endforeach
-            </div>
-        </div>
-        @endif
-        
-        <div class="grid lg:grid-cols-3 gap-8">
-            <!-- Основной контент -->
-            <div class="lg:col-span-2">
-                <div class="space-y-8">
-                    <!-- Основное изображение и описание -->
-                    <div class="bg-card rounded-2xl p-8">
-                        @if($service->image)
-                        <div class="mb-6 rounded-xl overflow-hidden">
-                            <img src="{{ asset('storage/' . $service->image) }}" 
+
+
+        <!-- Галерея -->
+        @if(is_array($service->images) && count($service->images) > 0)
+
+            <div class="mb-12">
+
+                <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+
+                    @foreach($service->images as $image)
+
+                        <div class="relative group cursor-pointer"
+                             onclick="openModal('{{ asset('storage/' . $image) }}')">
+
+                            <img src="{{ asset('storage/' . $image) }}"
                                  alt="{{ $service->title }}"
-                                 class="w-full h-auto">
-                        </div>
-                        @endif
-                        
-                        @if($service->description)
-                        <div class="prose prose-invert max-w-none">
-                            {!! $service->description !!}
-                        </div>
-                        @endif
-                    </div>
-                    
-                    <!-- Полное содержание -->
-                    @if($service->content)
-                    <div class="bg-card rounded-2xl p-8">
-                        <div class="prose prose-invert max-w-none">
-                            {!! $service->content !!}
-                        </div>
-                    </div>
-                    @endif
-                    
-                    <!-- Особенности -->
-                    @if(isset($service->features) && is_array($service->features) && count($service->features) > 0)
-                    <div class="bg-card rounded-2xl p-8">
-                        <h2 class="text-2xl font-bold mb-6">Особенности</h2>
-                        <div class="grid md:grid-cols-2 gap-6">
-                            @foreach($service->features as $feature)
-                            <div class="flex items-start space-x-3">
-                                <div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center flex-shrink-0">
-                                    <span class="text-accent font-bold">✓</span>
-                                </div>
-                                <div>
-                                    <h3 class="font-bold mb-1">{{ $feature['title'] ?? '' }}</h3>
-                                    <p class="text-sm text-text-secondary">{{ $feature['description'] ?? '' }}</p>
-                                </div>
+                                 class="w-full h-48 object-cover rounded-2xl border border-white/10 group-hover:border-accent/50 transition-all duration-300">
+
+                            <div class="absolute inset-0 bg-black/50 opacity-0 group-hover:opacity-100 transition-opacity duration-300 rounded-2xl flex items-center justify-center">
+
+                                <span class="text-white text-sm">
+                                    Увеличить
+                                </span>
+
                             </div>
-                            @endforeach
+
                         </div>
-                    </div>
-                    @endif
-                    
-                    <!-- FAQ -->
-                    @if(isset($service->faq) && is_array($service->faq) && count($service->faq) > 0)
-                    <div class="bg-card rounded-2xl p-8">
-                        <h2 class="text-2xl font-bold mb-6">Частые вопросы</h2>
-                        <div class="space-y-4">
-                            @foreach($service->faq as $item)
-                            <div class="border-b border-white/10 last:border-0 pb-4 last:pb-0">
-                                <h3 class="font-bold mb-2">{{ $item['question'] ?? '' }}</h3>
-                                <p class="text-text-secondary">{{ $item['answer'] ?? '' }}</p>
-                            </div>
-                            @endforeach
-                        </div>
-                    </div>
-                    @endif
+
+                    @endforeach
+
                 </div>
+
             </div>
-            
-            <!-- Сайдбар -->
-            <div>
-                <div class="bg-card rounded-2xl p-6 mb-6 sticky top-6">
-                    <h3 class="text-xl font-bold mb-4">Заказать услугу</h3>
-                    
-                    @if($service->price_from)
-                    <div class="mb-4 p-4 bg-background/50 rounded-xl">
-                        <span class="text-text-secondary text-sm">Стоимость от</span>
-                        <div class="text-2xl font-bold text-accent">{{ $service->price_from }}</div>
+
+        @endif
+
+
+        <!-- Основное описание -->
+        @if($service->description)
+
+            <div class="max-w-4xl mb-12">
+
+                <h2 class="text-2xl font-bold mb-6">
+                    О задаче
+                </h2>
+
+                <div class="bg-card p-8 rounded-2xl border border-white/5">
+
+                    <div class="text-text-secondary leading-relaxed">
+                        {!! nl2br(e($service->description)) !!}
                     </div>
-                    @endif
-                    
-                    <p class="text-text-secondary mb-4">
-                        Опишите вашу задачу, и я предложу оптимальное решение
-                    </p>
-                    <a href="/#contacts" 
-                        data-goal="service_cta_click" 
-                        data-service="{{ $service->slug }}" 
-                       class="block w-full py-3 bg-accent text-background font-bold rounded-xl hover:bg-accent/90 transition text-center">
-                        Обсудить проект
-                    </a>
+
                 </div>
-                
-                <!-- Технологии -->
-                @if(isset($service->technologies) && is_array($service->technologies) && count($service->technologies) > 0)
-                <div class="bg-card rounded-2xl p-6 mb-6">
-                    <h3 class="text-xl font-bold mb-4">Технологии</h3>
-                    <div class="flex flex-wrap gap-2">
-                        @foreach($service->technologies as $tech)
-                        <span class="px-3 py-1 bg-background text-text-secondary rounded-full text-sm">
+
+            </div>
+
+        @endif
+
+
+        <!-- Полное содержание -->
+        @if($service->content)
+
+            <div class="max-w-4xl mb-12">
+
+                <h2 class="text-2xl font-bold mb-6">
+                    Что входит в работу
+                </h2>
+
+                <div class="bg-card p-8 rounded-2xl border border-white/5">
+
+                    <div class="text-text-secondary leading-relaxed">
+                        {!! nl2br(e($service->content)) !!}
+                    </div>
+
+                </div>
+
+            </div>
+
+        @endif
+
+
+        <!-- Особенности -->
+        @if(is_array($service->features) && count($service->features) > 0)
+
+            <div class="mb-12">
+
+                <h2 class="text-2xl font-bold mb-8">
+                    Что можно сделать
+                </h2>
+
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    @foreach($service->features as $feature)
+
+                        <div class="bg-card p-6 rounded-2xl border border-white/5">
+
+                            <div class="w-8 h-8 rounded-lg bg-accent/10 flex items-center justify-center mb-4">
+
+                                <span class="text-accent font-bold">
+                                    ✓
+                                </span>
+
+                            </div>
+
+                            <h3 class="text-lg font-bold mb-2">
+                                {{ $feature['title'] ?? '' }}
+                            </h3>
+
+                            <p class="text-sm text-text-secondary">
+                                {{ $feature['description'] ?? '' }}
+                            </p>
+
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+
+        @endif
+
+
+        <!-- Связанные кейсы -->
+        @if(isset($relatedCases) && $relatedCases->count() > 0)
+
+            <div class="mb-12">
+
+                <h2 class="text-2xl font-bold mb-8">
+                    Примеры проектов
+                </h2>
+
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                    @foreach($relatedCases as $relatedCase)
+
+                        <div class="bg-card p-6 rounded-2xl border border-white/5">
+
+                            <h3 class="text-xl font-bold mb-3">
+                                {{ $relatedCase->title_short ?: $relatedCase->title }}
+                            </h3>
+
+
+                            @if($relatedCase->task)
+
+                                <p class="text-sm text-text-secondary mb-4">
+                                    {{ \Illuminate\Support\Str::limit($relatedCase->task, 140) }}
+                                </p>
+
+                            @endif
+
+
+                            <a href="{{ route('cases.show', $relatedCase->slug) }}"
+                               data-goal="related_case_click"
+                               data-case="{{ $relatedCase->slug }}"
+                               data-service="{{ $service->slug }}"
+                               class="text-accent text-sm font-medium">
+
+                                Посмотреть кейс →
+
+                            </a>
+
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+
+        @endif
+
+
+        <!-- Технологии -->
+        @if(is_array($service->technologies) && count($service->technologies) > 0)
+
+            <div class="mb-12">
+
+                <h2 class="text-2xl font-bold mb-6">
+                    Технологии
+                </h2>
+
+                <div class="flex flex-wrap gap-2">
+
+                    @foreach($service->technologies as $tech)
+
+                        <span class="px-3 py-2 bg-card border border-white/5 text-text-secondary rounded-xl text-sm">
                             {{ $tech }}
                         </span>
-                        @endforeach
-                    </div>
+
+                    @endforeach
+
                 </div>
-                @endif
-                
-                <!-- Связанные кейсы -->
-                @if(isset($service->cases) && is_array($service->cases) && count($service->cases) > 0)
-                <div class="bg-card rounded-2xl p-6 mb-6">
-                    <h3 class="text-xl font-bold mb-4">Примеры работ</h3>
-                    <ul class="space-y-3">
-                        @foreach($service->cases as $caseSlug)
-                        <li>
-                            <a href="/cases/{{ $caseSlug }}" 
-                                data-goal="related_case_click" 
-                                data-case="{{ $caseSlug }}" 
-                                data-service="{{ $service->slug }}" 
-                               class="text-accent hover:underline block py-1">
-                                {{ $caseSlug }}
-                            </a>
-                        </li>
-                        @endforeach
-                    </ul>
-                </div>
-                @endif
-                
-                <!-- Другие услуги -->
-                <div class="bg-card rounded-2xl p-6">
-                    <h3 class="text-xl font-bold mb-4">Другие услуги</h3>
-                    <ul class="space-y-2">
-                        @foreach($servicesMenu as $otherService)
-                            @if($otherService->slug !== $service->slug)
-                            <li>
-                                <a href="{{ route('services.show', $otherService->slug) }}" 
-                                    data-goal="other_service_click" 
-                                    data-service="{{ $otherService->slug }}" 
-                                class="text-text-secondary hover:text-accent transition block py-2">
-                                    {{ $otherService->title }}
-                                </a>
-                            </li>
-                            @endif
-                        @endforeach
-                    </ul>
-                </div>
+
             </div>
+
+        @endif
+
+
+        <!-- FAQ -->
+        @if(is_array($service->faq) && count($service->faq) > 0)
+
+            <div class="max-w-4xl mb-12">
+
+                <h2 class="text-2xl font-bold mb-8">
+                    Частые вопросы
+                </h2>
+
+
+                <div class="space-y-4">
+
+                    @foreach($service->faq as $item)
+
+                        <div class="bg-card p-6 rounded-2xl border border-white/5">
+
+                            <h3 class="font-bold mb-3">
+                                {{ $item['question'] ?? '' }}
+                            </h3>
+
+                            <p class="text-text-secondary">
+                                {{ $item['answer'] ?? '' }}
+                            </p>
+
+                        </div>
+
+                    @endforeach
+
+                </div>
+
+            </div>
+
+        @endif
+
+
+        <!-- CTA -->
+        <div class="bg-card p-8 rounded-3xl border border-white/5 mb-12">
+
+            <div class="max-w-3xl">
+
+                <h2 class="text-2xl font-bold mb-4">
+                    Есть задача?
+                </h2>
+
+                <p class="text-text-secondary text-lg mb-6">
+                    Опишите ситуацию своими словами.
+                    Посмотрю, могу ли помочь и какой вариант решения будет разумнее.
+                </p>
+
+                <a href="/#contacts"
+                   data-goal="service_cta_click"
+                   data-service="{{ $service->slug }}"
+                   class="inline-block px-8 py-4 bg-accent text-background font-bold rounded-xl hover:bg-accent/90 transition">
+
+                    Обсудить задачу
+
+                </a>
+
+            </div>
+
         </div>
+
+
+        <!-- Другие услуги -->
+        <div>
+
+            <h2 class="text-2xl font-bold mb-6">
+                Другие услуги
+            </h2>
+
+
+            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+
+                @foreach($servicesMenu as $otherService)
+
+                    @if($otherService->slug !== $service->slug)
+
+                        <a href="{{ route('services.show', $otherService->slug) }}"
+                           data-goal="other_service_click"
+                           data-service="{{ $otherService->slug }}"
+                           class="bg-card p-6 rounded-2xl border border-white/5 hover:border-accent/30 transition">
+
+                            <div class="font-bold mb-2">
+                                {{ $otherService->title }}
+                            </div>
+
+                            @if($otherService->short_description)
+
+                                <div class="text-sm text-text-secondary">
+                                    {{ \Illuminate\Support\Str::limit($otherService->short_description, 100) }}
+                                </div>
+
+                            @endif
+
+                        </a>
+
+                    @endif
+
+                @endforeach
+
+            </div>
+
+        </div>
+
     </div>
+
 </section>
 
-<!-- Модальное окно для просмотра изображений -->
-<div id="imageModal" class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center" onclick="closeModal()">
+
+<!-- Модальное окно -->
+<div id="imageModal"
+     class="fixed inset-0 bg-black/90 z-50 hidden items-center justify-center"
+     onclick="closeModal()">
+
     <div class="relative max-w-5xl max-h-[90vh] mx-4">
-        <img id="modalImage" src="" alt="" class="w-full h-full object-contain">
-        <button onclick="closeModal()" class="absolute top-4 right-4 text-white bg-black/50 rounded-full p-2 hover:bg-black/70 transition">
-            <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"></path>
+
+        <img id="modalImage"
+             src=""
+             alt=""
+             class="w-full h-full object-contain">
+
+        <button onclick="closeModal()"
+                class="absolute top-4 right-4 text-white bg-black/50 rounded-full p-2 hover:bg-black/70 transition">
+
+            <svg class="w-6 h-6"
+                 fill="none"
+                 stroke="currentColor"
+                 viewBox="0 0 24 24">
+
+                <path stroke-linecap="round"
+                      stroke-linejoin="round"
+                      stroke-width="2"
+                      d="M6 18L18 6M6 6l12 12">
+                </path>
+
             </svg>
+
         </button>
+
     </div>
+
 </div>
+
 
 <script>
 function openModal(src) {
     document.getElementById('modalImage').src = src;
+
     document.getElementById('imageModal').classList.remove('hidden');
     document.getElementById('imageModal').classList.add('flex');
+
     document.body.style.overflow = 'hidden';
 }
 
 function closeModal() {
     document.getElementById('imageModal').classList.add('hidden');
     document.getElementById('imageModal').classList.remove('flex');
+
     document.body.style.overflow = '';
 }
 </script>
+
+
 <script>
 document.addEventListener('DOMContentLoaded', function () {
     if (window.cdAnalytics?.reachGoal) {
@@ -259,4 +503,5 @@ document.addEventListener('DOMContentLoaded', function () {
     }
 });
 </script>
+
 @endsection

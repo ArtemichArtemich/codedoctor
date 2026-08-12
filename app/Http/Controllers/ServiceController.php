@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Service;
+use App\Models\Project;
 use Illuminate\Http\Request;
 
 class ServiceController extends Controller
@@ -31,28 +32,41 @@ class ServiceController extends Controller
      */
     public function show($slug)
     {
-        // Ищем услугу в БД
         $service = Service::where('slug', $slug)
             ->where('is_active', true)
             ->firstOrFail();
-        
-        // Получаем все услуги для меню
+
         $servicesMenu = Service::where('is_active', true)
             ->orderBy('sort')
             ->get();
-        
+
+        $relatedCases = collect();
+
+        if (is_array($service->cases) && count($service->cases) > 0) {
+            $relatedCases = Project::where('is_active', true)
+                ->whereIn('slug', $service->cases)
+                ->orderBy('sort')
+                ->get();
+        }
+
         $data = [
-            'title' => $service->meta_title ?? $service->title . ' | Артём',
-            'description' => $service->meta_description ?? $service->short_description ?? strip_tags($service->description),
+            'title' => $service->meta_title ?? $service->title . ' | Code Doctor',
+            'description' => $service->meta_description
+                ?? $service->short_description
+                ?? strip_tags($service->description),
+
             'h1' => $service->h1 ?? $service->title,
+
             'service' => $service,
             'servicesMenu' => $servicesMenu,
+            'relatedCases' => $relatedCases,
+
             'breadcrumbs' => [
                 ['name' => 'Услуги', 'url' => '/services'],
                 ['name' => $service->title, 'url' => '']
             ]
         ];
-        
+
         return view('pages.services.show', $data);
     }
     
