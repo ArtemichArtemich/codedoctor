@@ -1,11 +1,9 @@
 @extends('layouts.app')
 
-
 @section(
     'title',
     $article->meta_title ?: ($article->title . ' | Code Doctor')
 )
-
 
 @section(
     'description',
@@ -14,11 +12,11 @@
             ?: \Illuminate\Support\Str::limit(strip_tags($article->content), 155))
 )
 
-
 @if($article->image)
     @section('og_image', asset('storage/' . $article->image))
 @endif
 
+@section('og_type', 'article')
 
 @section('content')
 
@@ -27,7 +25,6 @@
     <div class="container">
 
         <div class="max-w-4xl mx-auto">
-
 
             {{-- Хлебные крошки --}}
             <nav class="mb-8 text-sm">
@@ -52,12 +49,10 @@
 
             </nav>
 
-
             {{-- Заголовок --}}
             <header class="mb-10">
 
                 <div class="flex flex-wrap items-center gap-3 mb-5">
-
 
                     @if($article->category)
 
@@ -66,7 +61,6 @@
                         </span>
 
                     @endif
-
 
                     @if($article->published_at)
 
@@ -81,11 +75,9 @@
 
                 </div>
 
-
                 <h1 class="text-3xl md:text-5xl font-bold leading-tight mb-6">
                     {{ $article->h1 ?: $article->title }}
                 </h1>
-
 
                 @if($article->excerpt)
 
@@ -96,7 +88,6 @@
                 @endif
 
             </header>
-
 
             {{-- Обложка --}}
             @if($article->image)
@@ -113,7 +104,6 @@
 
             @endif
 
-
             {{-- Статья --}}
             <article class="bg-card rounded-3xl border border-white/5 p-6 md:p-10 mb-10">
 
@@ -128,7 +118,6 @@
                 </div>
 
             </article>
-
 
             {{-- Теги --}}
             @if(is_array($article->tags) && count($article->tags) > 0)
@@ -146,7 +135,6 @@
                 </div>
 
             @endif
-
 
             {{-- CTA --}}
             <div class="bg-card border border-accent/20 rounded-3xl p-8 mb-12">
@@ -171,7 +159,6 @@
 
             </div>
 
-
             {{-- Связанные статьи --}}
             @if($relatedArticles->count() > 0)
 
@@ -180,7 +167,6 @@
                     <h2 class="text-2xl font-bold mb-6">
                         Ещё по теме
                     </h2>
-
 
                     <div class="grid md:grid-cols-3 gap-5">
 
@@ -201,7 +187,6 @@
 
                                     @endif
 
-
                                     @if($relatedArticle->published_at)
 
                                         <span class="text-xs text-text-tertiary">
@@ -211,7 +196,6 @@
                                     @endif
 
                                 </div>
-
 
                                 <h3 class="font-bold leading-snug">
                                     {{ $relatedArticle->title }}
@@ -226,7 +210,6 @@
                 </div>
 
             @endif
-
 
             {{-- Назад в блог --}}
             <div class="mt-12">
@@ -245,7 +228,6 @@
     </div>
 
 </section>
-
 
 {{-- Schema.org --}}
 <script type="application/ld+json">
@@ -289,7 +271,6 @@
 
 ], JSON_UNESCAPED_UNICODE | JSON_UNESCAPED_SLASHES) !!}
 </script>
-
 
 <script>
 document.addEventListener('DOMContentLoaded', function () {
