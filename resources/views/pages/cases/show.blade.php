@@ -567,17 +567,19 @@ $case->meta_description ?? $case->task ?? $case->result ?? 'Описание к�
 
 
 <script>
-    document.addEventListener('DOMContentLoaded', function() {
-        if (window.cdAnalytics?.reachGoal) {
+document.addEventListener('DOMContentLoaded', function () {
 
-            window.cdAnalytics.reachGoal('case_view', {
-                case: @json($case - > slug),
-                title: @json($case - > title),
-                page: window.location.href
-            });
+    if (window.cdAnalytics?.reachGoal) {
 
-        }
-    });
+        window.cdAnalytics.reachGoal('case_view', {
+            case: @json($case->slug),
+            title: @json($case->title),
+            page: window.location.href
+        });
+
+    }
+
+});
 </script>
 
 @endsection

@@ -14,8 +14,8 @@
     $directory = dirname($src);
     $ext = pathinfo($src, PATHINFO_EXTENSION);
 
-    // Путь к оригинальному изображению через Vite
-    $originalPath = Vite::asset("resources/images/{$src}");
+    // Путь к оригинальному изображению из public/images
+    $originalPath = asset("images/{$src}");
 
     // Ищем WebP файл
     $webpPath = "images/{$directory}/{$baseName}.webp";

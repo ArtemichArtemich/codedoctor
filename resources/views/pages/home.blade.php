@@ -6,83 +6,177 @@
 @section('content')
 
     <!-- HERO -->
+    <style>
+        .home-hero-container {
+            width: 100%;
+            max-width: 1600px;
+            margin-left: auto;
+            margin-right: auto;
+            padding-left: 24px;
+            padding-right: 24px;
+        }
+
+        .home-hero-grid {
+            display: grid;
+            gap: 3rem;
+            align-items: center;
+        }
+
+        @media (min-width: 768px) {
+            .home-hero-grid {
+                grid-template-columns: 1fr 1.35fr;
+            }
+        }
+
+        @media (min-width: 1280px) {
+            .home-hero-container {
+                padding-left: 48px;
+                padding-right: 48px;
+            }
+        }
+    </style>
+
     <section class="relative overflow-hidden py-6 md:py-16 z-10">
-        <div class="container">
-            <div class="grid md:grid-cols-2 gap-12 items-center">
+
+        <div class="home-hero-container">
+
+            <div class="home-hero-grid">
+
                 <!-- Текст -->
                 <div>
+
                     <div class="inline-flex items-center px-4 py-2 bg-accent/10 border border-accent/30 rounded-full mb-6">
-                        <span class="text-accent font-medium">Сайты, интернет-магазины и веб-проекты</span>
+                        <span class="text-accent font-medium">
+                            Сайты, интернет-магазины и веб-проекты
+                        </span>
                     </div>
-                    
+
                     <h1 class="text-3xl md:text-5xl font-bold mb-6 leading-tight">
-                        Помогаю разобраться с сайтом, исправить проблемы и развивать его дальше
+                        Дорабатываю сайты, исправляю проблемы и помогаю развивать веб-проекты
                     </h1>
-                    
-                    <p class="text-l text-text-secondary mb-10 max-w-xl">
+
+                    <p class="text-lg text-text-secondary mb-8 max-w-xl">
                         Исправляю ошибки, дорабатываю существующие сайты и интернет-магазины,
                         подключаю сервисы и автоматизацию, помогаю с аналитикой, SEO и другими задачами вокруг сайта.
                         Если проект старый, чужой или непонятно устроен — сначала разберусь, что в нём происходит.
                     </p>
 
-                    <p class="text-l text-text-secondary mb-10 max-w-xl">
-                        <span class="text-accent font-medium">Разбор сайта — от 5 000 ₽</span><br>
-                        <span class="text-accent font-medium">Срочная помощь — от 5 000 ₽</span><br>
-                        <span class="text-accent font-medium">Сопровождение сайта — от 15 000 ₽/мес</span>
-                    </p>
-                    <div class="flex flex-wrap items-center justify-between gap-4">
-                        <div class="flex flex-wrap gap-4">
-                            <a href="#contacts" 
-                            data-goal="diagnostic_cta_click" 
-                            class="inline-block px-8 py-4 bg-accent text-background font-bold rounded-xl hover:bg-accent/90 transition shadow-lg hover:shadow-xl">
-                                Обсудить задачу
-                            </a>
-                            <a href="https://t.me/artem_fullstack" 
-                            data-goal="telegram_click" 
-                            class="inline-block px-8 py-4 bg-accent/20 backdrop-blur-sm border border-accent/30 text-white font-bold rounded-xl hover:bg-accent/30 transition">
-                                Написать в Telegram
-                            </a>
+                    <!-- Цены -->
+                    <div class="mb-8">
+
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <span class="text-accent font-medium">
+                                Разбор сайта — от 5 000 ₽
+                            </span>
                         </div>
-                        <a href="#cases" data-goal="cases_click" 
-                        class="px-8 py-4 border-2 border-white/20 text-white font-bold rounded-xl hover:border-accent hover:bg-accent/10 transition inline-flex items-center gap-2">
-                            Посмотреть кейсы <span>→</span>
+
+                        <div class="flex flex-wrap gap-2 mb-2">
+                            <span class="text-accent font-medium">
+                                Срочная помощь — от 5 000 ₽
+                            </span>
+                        </div>
+
+                        <div class="flex flex-wrap gap-2">
+                            <span class="text-accent font-medium">
+                                Сопровождение — от 15 000 ₽/мес
+                            </span>
+                        </div>
+
+                    </div>
+
+                    <!-- Основные CTA -->
+                    <div class="flex flex-wrap gap-4 mb-5">
+
+                        <a
+                            href="#contacts"
+                            data-goal="diagnostic_cta_click"
+                            class="inline-block px-8 py-4 bg-accent text-background font-bold rounded-xl hover:bg-accent/90 transition shadow-lg hover:shadow-xl"
+                        >
+                            Обсудить задачу
                         </a>
+
+                        <a
+                            href="https://t.me/artem_fullstack"
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            data-goal="telegram_click"
+                            class="inline-block px-8 py-4 bg-accent/20 backdrop-blur-sm border border-accent/30 text-white font-bold rounded-xl hover:bg-accent/30 transition"
+                        >
+                            Написать в Telegram
+                        </a>
+
                     </div>
+
+                    <!-- Кейсы -->
+                    <a
+                        href="#cases"
+                        data-goal="cases_click"
+                        class="inline-flex items-center gap-2 text-text-secondary hover:text-accent transition"
+                    >
+                        Посмотреть реальные проекты
+                        <span>→</span>
+                    </a>
+
                 </div>
-                
-                <!-- Фото -->
+
+
+                <!-- Коллаж проектов -->
                 <div class="relative">
-                    <div class="relative w-full mx-auto">
-                        <!-- Размытый фон-подложка -->
-                        <div class="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent2/20 rounded-3xl blur-3xl transform scale-105"></div>
-                        
-                        <!-- Основной контейнер -->
-                        <div class="relative bg-card/50 backdrop-blur-sm border border-white/10 rounded-3xl overflow-hidden">
-                            <!-- Внешняя рамка для PNG -->
-                            <div class="relative">
-                                <!-- Дымный размытый фон для фото -->
-                                <div class="absolute inset-0 bg-gradient-to-br from-accent/10 via-card/30 to-accent2/10 blur-xl"></div>
-                                
-                                <!-- Твоё PNG фото -->
-                                <x-auto-img 
-                                    src="hero/photo.png"
-                                    alt="Техническое сопровождение сайтов — Code Doctor"
-                                    class="relative w-full h-auto object-contain object-center z-10 drop-shadow-[0_20px_40px_rgba(246,201,69,0.2)]"
-                                    :lazy="false"
-                                    :priority="true"
-                                    width="600"
-                                    height="600"
-                                    loading="eager"
-                                    fetchpriority="high"
-                                    decoding="async"
-                                    sizes="(max-width: 768px) 378px, 600px"
-                                />
-                            </div>
-                        </div>
+
+                    <!-- Мягкое свечение вокруг коллажа -->
+                    <div
+                        class="absolute inset-0 rounded-3xl blur-3xl"
+                        style="background:
+                            radial-gradient(
+                                circle at center,
+                                rgba(246, 201, 69, 0.10) 0%,
+                                rgba(16, 185, 129, 0.08) 35%,
+                                rgba(0, 0, 0, 0) 72%
+                            );
+                        "
+                    ></div>
+
+                    <!-- Коллаж -->
+                    <div
+                        class="relative overflow-hidden rounded-3xl"
+                        style="
+                            box-shadow:
+                                0 30px 80px rgba(0, 0, 0, 0.45),
+                                0 0 60px rgba(246, 201, 69, 0.06);
+                        "
+                    >
+
+                        <x-auto-img
+                            src="hero/projects-collage4.png"
+                            alt="Примеры веб-проектов Code Doctor"
+                            class="relative w-full h-auto object-contain object-center"
+                            :lazy="false"
+                            :priority="true"
+                            loading="eager"
+                            fetchpriority="high"
+                            decoding="async"
+                        />
+
+                        <!-- Плавное растворение краёв -->
+                        <div
+                            class="absolute inset-0 pointer-events-none"
+                            style="
+                                box-shadow:
+                                    inset 30px 0 45px rgba(9, 20, 17, 0.55),
+                                    inset -30px 0 45px rgba(9, 20, 17, 0.55),
+                                    inset 0 30px 45px rgba(9, 20, 17, 0.35),
+                                    inset 0 -30px 45px rgba(9, 20, 17, 0.50);
+                            "
+                        ></div>
+
                     </div>
+
                 </div>
+
             </div>
+
         </div>
+
     </section>
 
     <!-- ПРОБЛЕМЫ -->
@@ -107,15 +201,11 @@
                 @php
                     $problems = [
                         'Сайт сломался, работает нестабильно или после обновления появились ошибки.',
-                        'Не работает корзина, оплата, доставка, формы, заявки или другие важные функции.',
-                        'Нужно доработать существующий сайт под новые задачи бизнеса.',
-                        'Старый разработчик пропал, а в чужом проекте нужно разобраться и продолжить работу.',
-                        'Нужно сделать новый сайт или веб-сервис с нуля.',
-                        'Реклама работает, но непонятно, откуда приходят заявки и что происходит на сайте.',
-                        'Нужно понять, что улучшать в первую очередь: техническую часть, SEO, структуру, контент или аналитику.',
+                        'Не работает корзина, оплата, доставка, формы или другие важные функции.',
+                        'Нужно доработать существующий сайт или разобраться в чужом проекте.',
+                        'Нужно сделать новый сайт или веб-сервис под конкретную задачу.',
                         'Нужно связать сайт с CRM, 1С, оплатой, доставкой или другими сервисами.',
-                        'Нужен человек, который будет регулярно заниматься сайтом, доработками и возникающими задачами.',
-                        'Есть идея или бизнес-задача, но непонятно, как лучше реализовать её на сайте.'
+                        'Непонятно, что улучшать в первую очередь и с чего вообще начинать.'
                     ];
                 @endphp
 
@@ -414,222 +504,385 @@
     <section class="py-20 bg-card/30">
         <div class="container">
 
-            <div class="max-w-3xl mx-auto text-center mb-12">
+            <div class="max-w-3xl mx-auto text-center mb-10">
+
                 <div class="inline-flex items-center px-4 py-2 bg-accent/10 border border-accent/30 rounded-full mb-6">
-                    <span class="text-accent font-medium">Не только разработка</span>
+                    <span class="text-accent font-medium">
+                        Не только разработка
+                    </span>
                 </div>
 
                 <h2 class="text-3xl md:text-4xl font-bold mb-4">
-                    Могу помочь и со смежными задачами
+                    Могу посмотреть на проект шире
                 </h2>
 
                 <p class="text-text-secondary text-lg">
-                    Иногда сайт технически работает, но проблема находится в аналитике,
-                    SEO, структуре страниц или в том, как настроена реклама.
-                    В таких случаях могу посмотреть на проект шире и помочь найти слабое место.
+                    Иногда проблема находится не в коде, а в аналитике, SEO,
+                    структуре страниц, контенте или связке сайта с рекламой.
+                    В таких случаях могу помочь найти слабое место и определить приоритеты.
                 </p>
-            </div>
-
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-
-                <!-- SEO -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5">
-                    <div class="text-2xl mb-4">🔎</div>
-
-                    <h3 class="font-bold text-lg mb-2">
-                        SEO и структура сайта
-                    </h3>
-
-                    <p class="text-sm text-text-secondary">
-                        Технические ошибки, метатеги, страницы, структура,
-                        внутренняя перелинковка и базовая работа с семантикой.
-                    </p>
-                </div>
-
-                <!-- Аналитика -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5">
-                    <div class="text-2xl mb-4">📊</div>
-
-                    <h3 class="font-bold text-lg mb-2">
-                        Метрика и аналитика
-                    </h3>
-
-                    <p class="text-sm text-text-secondary">
-                        Цели, события, заявки, заказы, e-commerce и проверка того,
-                        правильно ли вообще собираются данные.
-                    </p>
-                </div>
-
-                <!-- Реклама -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5">
-                    <div class="text-2xl mb-4">📣</div>
-
-                    <h3 class="font-bold text-lg mb-2">
-                        Реклама и посадочные страницы
-                    </h3>
-
-                    <p class="text-sm text-text-secondary">
-                        Могу посмотреть рекламный трафик, посадочные страницы,
-                        связку объявлений с сайтом и базовые проблемы настройки.
-                    </p>
-                </div>
-
-                <!-- Контент -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5">
-                    <div class="text-2xl mb-4">✍️</div>
-
-                    <h3 class="font-bold text-lg mb-2">
-                        Контент и подача информации
-                    </h3>
-
-                    <p class="text-sm text-text-secondary">
-                        Структура страниц, тексты, понятность предложения
-                        и то, насколько сайт отвечает на вопросы клиента.
-                    </p>
-                </div>
-
-                <!-- Данные -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5">
-                    <div class="text-2xl mb-4">🧩</div>
-
-                    <h3 class="font-bold text-lg mb-2">
-                        Данные и отчёты
-                    </h3>
-
-                    <p class="text-sm text-text-secondary">
-                        Помогу собрать данные из сайта или других систем,
-                        привести их в порядок и получить понятный отчёт.
-                    </p>
-                </div>
-
-                <!-- Общая диагностика -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5">
-                    <div class="text-2xl mb-4">🧭</div>
-
-                    <h3 class="font-bold text-lg mb-2">
-                        Что улучшать в первую очередь
-                    </h3>
-
-                    <p class="text-sm text-text-secondary">
-                        Если проблем много, помогу разделить их на критичные,
-                        важные и те, которые можно спокойно отложить.
-                    </p>
-                </div>
 
             </div>
 
-            <div class="max-w-3xl mx-auto mt-10 text-center">
-                <p class="text-sm text-text-tertiary">
-                    Это дополнительные направления, а не попытка заменить профильного SEO-специалиста,
-                    маркетолога или аналитика там, где нужна глубокая узкая экспертиза.
-                </p>
+            <div class="max-w-5xl mx-auto bg-card border border-white/5 rounded-3xl p-6 md:p-8">
+
+                <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
+
+                    <div class="p-4 rounded-xl bg-background/50">
+                        <div class="font-bold mb-1">
+                            SEO и структура
+                        </div>
+                        <div class="text-sm text-text-secondary">
+                            Технические ошибки, метатеги, страницы и перелинковка.
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-background/50">
+                        <div class="font-bold mb-1">
+                            Метрика и аналитика
+                        </div>
+                        <div class="text-sm text-text-secondary">
+                            Цели, события, заявки, заказы и e-commerce.
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-background/50">
+                        <div class="font-bold mb-1">
+                            Реклама и посадочные
+                        </div>
+                        <div class="text-sm text-text-secondary">
+                            Связка рекламного трафика с сайтом и базовые проблемы настройки.
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-background/50">
+                        <div class="font-bold mb-1">
+                            Контент
+                        </div>
+                        <div class="text-sm text-text-secondary">
+                            Структура страниц, тексты и понятность предложения.
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-background/50">
+                        <div class="font-bold mb-1">
+                            Данные и отчёты
+                        </div>
+                        <div class="text-sm text-text-secondary">
+                            Сбор данных из сайта и других систем, Excel и CSV.
+                        </div>
+                    </div>
+
+                    <div class="p-4 rounded-xl bg-background/50">
+                        <div class="font-bold mb-1">
+                            Приоритеты
+                        </div>
+                        <div class="text-sm text-text-secondary">
+                            Что исправлять сейчас, что важно, а что можно отложить.
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="pt-6 mt-6 border-t border-white/5 text-center">
+
+                    <p class="text-sm text-text-tertiary">
+                        Это дополнительные направления, а не попытка заменить профильного
+                        SEO-специалиста, маркетолога или аналитика там, где нужна глубокая узкая экспертиза.
+                    </p>
+
+                </div>
+
             </div>
 
         </div>
     </section>
         
-    <!-- Преимущества -->
-    <section id="benefits" class="py-20">
+    <!-- Как выглядит моя работа -->
+    <section id="work" class="py-20">
+
         <div class="container">
-            <div class="text-center mb-12">
+
+            <div class="max-w-3xl mx-auto text-center mb-12">
+
                 <div class="inline-flex items-center px-4 py-2 bg-accent/10 border border-accent/30 rounded-full mb-6">
-                    <span class="text-accent font-medium">Почему выбирают меня</span>
+                    <span class="text-accent font-medium">
+                        Не только слова
+                    </span>
                 </div>
-                <h2 class="text-3xl md:text-4xl font-bold mb-4">Почему со мной удобно</h2>
-                <p class="text-text-secondary text-lg max-w-2xl mx-auto">
-                    Работаю как технический партнёр, а не просто исполнитель
+
+                <h2 class="text-3xl md:text-4xl font-bold mb-4">
+                    Как выглядит моя работа
+                </h2>
+
+                <p class="text-text-secondary text-lg">
+                    Работаю не только с внешним видом сайта.
+                    Это могут быть пользовательские сценарии, интернет-магазины,
+                    внутренние сервисы, бизнес-логика и интеграции между системами.
                 </p>
+
             </div>
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-                
-                <!-- 1 -->
-                <div class="flex gap-4 p-5 rounded-2xl bg-card/30 border border-white/5 hover:border-accent/20 transition group">
-                    <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition">
-                        <span class="text-accent text-xl">✍️</span>
-                    </div>
-                    <div>
-                        <h3 class="font-bold mb-1">Не переписываю сайт без необходимости</h3>
-                        <p class="text-text-secondary text-sm">Сначала разбираюсь в логике, потом предлагаю решение. Снижаю риск сломать рабочий проект.</p>
-                    </div>
-                </div>
 
-                <!-- 2 -->
-                <div class="flex gap-4 p-5 rounded-2xl bg-card/30 border border-white/5 hover:border-accent/20 transition group">
-                    <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition">
-                        <span class="text-accent text-xl">🛒</span>
-                    </div>
-                    <div>
-                        <h3 class="font-bold mb-1">Понимаю сайты с бизнес-логикой</h3>
-                        <p class="text-text-secondary text-sm">Работаю с заказами, заявками, оплатой, доставкой, формами, интеграциями, аналитикой, личными кабинетами и внутренними процессами.</p>
-                    </div>
-                </div>
+            <div class="grid lg:grid-cols-3 gap-6">
 
-                <!-- 3 -->
-                <div class="flex gap-4 p-5 rounded-2xl bg-card/30 border border-white/5 hover:border-accent/20 transition group">
-                    <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition">
-                        <span class="text-accent text-xl">🔧</span>
-                    </div>
-                    <div>
-                        <h3 class="font-bold mb-1">Беру задачи, где нужен разбор</h3>
-                        <p class="text-text-secondary text-sm">Чужой код, старые доработки, нестандартные модули, мало документации — всё это умею.</p>
-                    </div>
-                </div>
 
-                <!-- 4 -->
-                <div class="flex gap-4 p-5 rounded-2xl bg-card/30 border border-white/5 hover:border-accent/20 transition group">
-                    <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition">
-                        <span class="text-accent text-xl">🗣️</span>
-                    </div>
-                    <div>
-                        <h3 class="font-bold mb-1">Объясняю простым языком</h3>
-                        <p class="text-text-secondary text-sm">После диагностики понятно: что сломано, почему это важно и сколько стоит исправление.</p>
-                    </div>
-                </div>
+                <!-- Доработка существующего сайта -->
+                <article class="bg-card rounded-3xl border border-white/5 overflow-hidden">
 
-                <!-- 5 -->
-                <div class="flex gap-4 p-5 rounded-2xl bg-card/30 border border-white/5 hover:border-accent/20 transition group">
-                    <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition">
-                        <span class="text-accent text-xl">🔄</span>
-                    </div>
-                    <div>
-                        <h3 class="font-bold mb-1">Разовая работа или постоянная поддержка</h3>
-                        <p class="text-text-secondary text-sm">Закрываю отдельные правки и регулярное сопровождение магазина. Выбираете удобный формат.</p>
-                    </div>
-                </div>
+                    <div class="overflow-hidden bg-background">
 
-                <!-- 6 -->
-                <div class="flex gap-4 p-5 rounded-2xl bg-card/30 border border-white/5 hover:border-accent/20 transition group">
-                    <div class="flex-shrink-0 w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center group-hover:bg-accent/20 transition">
-                        <span class="text-accent text-xl">⚡</span>
+                        <x-auto-img
+                            src="work/art-of-tea.png"
+                            alt="Пример доработки интернет-магазина"
+                            class="w-full h-auto"
+                            :lazy="true"
+                            sizes="(max-width: 1024px) 100vw, 33vw"
+                        />
+
                     </div>
-                    <div>
-                        <h3 class="font-bold mb-1">Быстрая реакция на проблемы</h3>
-                        <p class="text-text-secondary text-sm">На срочные проблемы реагирую быстрее обычных задач: сайт не открывается, сломалась оплата, не приходят заказы.</p>
+
+                    <div class="p-6">
+
+                        <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+                            <span class="text-xl">🛠️</span>
+                        </div>
+
+                        <h3 class="text-xl font-bold mb-3">
+                            Доработка существующего сайта
+                        </h3>
+
+                        <p class="text-text-secondary text-sm leading-relaxed mb-5">
+                            Разбираюсь в уже работающем проекте, исправляю проблемы
+                            и добавляю новую функциональность без необходимости
+                            переделывать всё с нуля.
+                        </p>
+
+                        <div class="space-y-2 text-sm text-text-secondary">
+
+                            <div class="flex items-start gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>Каталог, корзина, оплата и доставка</span>
+                            </div>
+
+                            <div class="flex items-start gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>Личные кабинеты и формы</span>
+                            </div>
+
+                            <div class="flex items-start gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>Нестандартная бизнес-логика</span>
+                            </div>
+
+                            <div class="flex items-start gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>Разбор чужого и старого кода</span>
+                            </div>
+
+                        </div>
+
+                        <div class="pt-5 mt-5 border-t border-white/5">
+
+                            <a
+                                href="{{ url('/cases/art-of-tea-razvitie-i-podderzka-internet-magazina') }}"
+                                class="text-accent text-sm font-medium hover:underline"
+                            >
+                                Посмотреть кейс →
+                            </a>
+
+                        </div>
+
                     </div>
-                </div>
+
+                </article>
+
+
+                <!-- Создание сайта / сервиса -->
+                <article class="bg-card rounded-3xl border border-white/5 overflow-hidden">
+
+                    <div class="overflow-hidden bg-background">
+
+                        <x-auto-img
+                            src="work/lat.png"
+                            alt="Пример веб-сервиса Code Doctor"
+                            class="w-full h-auto"
+                            :lazy="true"
+                            sizes="(max-width: 1024px) 100vw, 33vw"
+                        />
+
+                    </div>
+
+                    <div class="p-6">
+
+                        <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+                            <span class="text-xl">⚙️</span>
+                        </div>
+
+                        <h3 class="text-xl font-bold mb-3">
+                            Создание сайта или сервиса
+                        </h3>
+
+                        <p class="text-text-secondary text-sm leading-relaxed mb-5">
+                            Если готового решения нет, проектирую и создаю новый
+                            веб-проект под конкретную задачу бизнеса.
+                        </p>
+
+                        <div class="space-y-2 text-sm text-text-secondary">
+
+                            <div class="flex items-start gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>Структура и интерфейс</span>
+                            </div>
+
+                            <div class="flex items-start gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>Frontend и backend</span>
+                            </div>
+
+                            <div class="flex items-start gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>API и внешние сервисы</span>
+                            </div>
+
+                            <div class="flex items-start gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>Запуск и дальнейшее развитие</span>
+                            </div>
+
+                        </div>
+
+                        <div class="pt-5 mt-5 border-t border-white/5">
+
+                            <a
+                                href="{{ url('/cases/lat-razrabotka-servisa-zakaza-evakuatora-s-nulia') }}"
+                                class="text-accent text-sm font-medium hover:underline"
+                            >
+                                Посмотреть кейс →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
+
+                <!-- Интеграции -->
+                <article class="bg-card rounded-3xl border border-white/5 overflow-hidden">
+
+                    <!-- Схема -->
+                    <div class="p-6 bg-background">
+
+                        <div class="bg-card border border-white/5 rounded-2xl p-6">
+
+                            <div class="bg-background border border-white/10 rounded-xl p-4 text-center font-medium">
+                                Сайт
+                            </div>
+
+                            <div class="text-center text-accent py-2">
+                                ↓
+                            </div>
+
+                            <div class="bg-background border border-accent/20 rounded-xl p-4 text-center font-medium text-accent">
+                                API
+                            </div>
+
+                            <div class="text-center text-accent py-2">
+                                ↓
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+
+                                <div class="bg-background border border-white/10 rounded-xl p-3 text-center text-sm">
+                                    CRM
+                                </div>
+
+                                <div class="bg-background border border-white/10 rounded-xl p-3 text-center text-sm">
+                                    1С
+                                </div>
+
+                            </div>
+
+                            <div class="text-center text-accent py-2">
+                                ↓
+                            </div>
+
+                            <div class="grid grid-cols-2 gap-3">
+
+                                <div class="bg-background border border-white/10 rounded-xl p-3 text-center text-sm">
+                                    Email
+                                </div>
+
+                                <div class="bg-background border border-white/10 rounded-xl p-3 text-center text-sm">
+                                    Telegram
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="p-6">
+
+                        <div class="w-12 h-12 rounded-xl bg-accent/10 flex items-center justify-center mb-5">
+                            <span class="text-xl">🔗</span>
+                        </div>
+
+                        <h3 class="text-xl font-bold mb-3">
+                            Интеграции и автоматизация
+                        </h3>
+
+                        <p class="text-text-secondary text-sm leading-relaxed mb-5">
+                            Связываю сайт с внешними системами и убираю ручные операции,
+                            которые можно выполнять автоматически.
+                        </p>
+
+                        <div class="space-y-2 text-sm text-text-secondary">
+
+                            <div class="flex items-start gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>CRM и 1С</span>
+                            </div>
+
+                            <div class="flex items-start gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>Оплата и доставка</span>
+                            </div>
+
+                            <div class="flex items-start gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>Внешние API</span>
+                            </div>
+
+                            <div class="flex items-start gap-2">
+                                <span class="text-accent">✓</span>
+                                <span>Уведомления, отчёты и обмен данными</span>
+                            </div>
+
+                        </div>
+
+                        <div class="pt-5 mt-5 border-t border-white/5">
+
+                            <a
+                                href="#contacts"
+                                class="text-accent text-sm font-medium hover:underline"
+                            >
+                                Обсудить задачу →
+                            </a>
+
+                        </div>
+
+                    </div>
+
+                </article>
+
             </div>
+
         </div>
-    </section>
 
-    <!-- Секция со статистикой -->
-    <section class="py-20 bg-card/30">
-        <div class="container">
-            <div class="grid md:grid-cols-3 gap-8 text-center">
-                <div>
-                    <div class="text-4xl md:text-5xl font-bold text-accent mb-2">12+</div>
-                    <div class="text-text-secondary">лет в разработке</div>
-                </div>
-                <div>
-                    <div class="text-4xl md:text-5xl font-bold text-accent mb-2">50+</div>
-                    <div class="text-text-secondary">успешных проектов</div>
-                </div>
-                <div>
-                    <div class="text-4xl md:text-5xl font-bold text-accent mb-2">5+</div>
-                    <div class="text-text-secondary">лет с e-commerce</div>
-                </div>
-            </div>
-        </div>
     </section>
         
     <!-- Кейсы -->
@@ -661,34 +914,105 @@
                             hover:-translate-y-2 hover:shadow-2xl hover:shadow-accent/10"
                     >
 
-                        <!-- Верхняя часть -->
-                        <div class="h-52 bg-gradient-to-br from-accent/20 to-accent2/10
-                                    flex flex-col items-center justify-center p-6">
+                        <!-- Изображение проекта -->
+                        <a
+                            href="{{ route('cases.show', $case->slug) }}"
+                            class="block"
+                            aria-label="Посмотреть кейс {{ $case->title_short ?: $case->title }}"
+                        >
 
-                            <div class="w-20 h-20 rounded-2xl bg-card/40 backdrop-blur-sm
-                                        border border-white/10 flex items-center justify-center mb-4
-                                        group-hover:scale-110 transition-transform duration-300">
+                            @if(is_array($case->images) && count($case->images) > 0)
 
-                                <span class="text-2xl font-bold text-white">
-                                    {{ Str::upper(Str::substr($case->title_short ?: $case->title, 0, 2)) }}
-                                </span>
+                                <div class="h-52 overflow-hidden bg-background">
 
-                            </div>
+                                    <img
+                                        src="{{ asset('storage/' . $case->images[0]) }}"
+                                        alt="{{ $case->title_short ?: $case->title }}"
+                                        loading="lazy"
+                                        decoding="async"
+                                        class="w-full h-full object-cover"
+                                        style="object-position: top;"
+                                    >
 
-                            <h3 class="text-xl font-bold text-center text-white">
-                                {{ $case->title_short ?: $case->title }}
-                            </h3>
-
-                            @if($case->duration)
-                                <div class="text-sm text-white/60 mt-2">
-                                    {{ $case->duration }}
                                 </div>
+
+                            @else
+
+                                <!-- Fallback для кейсов без изображений -->
+                                <div class="h-52 bg-gradient-to-br from-accent/20 to-accent2/10
+                                            flex flex-col items-center justify-center p-6">
+
+                                    <div class="w-20 h-20 rounded-2xl bg-card/40 backdrop-blur-sm
+                                                border border-white/10 flex items-center justify-center mb-4">
+
+                                        <span class="text-2xl font-bold text-white">
+                                            {{ Str::upper(Str::substr($case->title_short ?: $case->title, 0, 2)) }}
+                                        </span>
+
+                                    </div>
+
+                                    <span class="text-sm text-white/60">
+                                        Проект
+                                    </span>
+
+                                </div>
+
                             @endif
 
-                        </div>
+                        </a>
 
                         <!-- Содержание -->
                         <div class="p-6">
+
+                            <div class="mb-5">
+
+                                <div class="flex flex-wrap items-center gap-3 mb-2">
+
+                                    @if($case->duration)
+                                        <span class="text-xs text-accent">
+                                            {{ $case->duration }}
+                                        </span>
+                                    @endif
+
+                                    @if($case->category)
+                                        <span class="text-xs text-text-tertiary">
+                                            @switch($case->category)
+                                                @case('ecommerce')
+                                                    Интернет-магазин
+                                                    @break
+
+                                                @case('corporate')
+                                                    Корпоративный сайт
+                                                    @break
+
+                                                @case('landing')
+                                                    Лендинг
+                                                    @break
+
+                                                @case('portal')
+                                                    Веб-проект
+                                                    @break
+
+                                                @default
+                                                    Веб-проект
+                                            @endswitch
+                                        </span>
+                                    @endif
+
+                                </div>
+
+                                <h3 class="text-xl font-bold leading-snug">
+
+                                    <a
+                                        href="{{ route('cases.show', $case->slug) }}"
+                                        class="hover:text-accent transition"
+                                    >
+                                        {{ $case->title_short ?: $case->title }}
+                                    </a>
+
+                                </h3>
+
+                            </div>
 
                             <!-- Задача -->
                             @if($case->task)
@@ -753,7 +1077,7 @@
                             <div class="flex justify-end items-center pt-4 border-t border-white/5">
 
                                 <a
-                                    href="{{ url('/cases/' . $case->slug) }}"
+                                    href="{{ route('cases.show', $case->slug) }}"
                                     data-goal="case_detail_click"
                                     class="text-accent text-sm font-medium inline-flex items-center gap-1
                                         group-hover:translate-x-1 transition-transform"
@@ -800,7 +1124,7 @@
     <section id="prices" class="py-20 bg-card/30">
         <div class="container">
 
-            <div class="text-center mb-12">
+            <div class="max-w-3xl mx-auto text-center mb-10">
 
                 <div class="inline-flex items-center px-4 py-2 bg-accent/10 border border-accent/30 rounded-full mb-6">
                     <span class="text-accent font-medium">
@@ -812,190 +1136,156 @@
                     Стоимость
                 </h2>
 
-                <p class="text-text-secondary text-lg max-w-2xl mx-auto">
+                <p class="text-text-secondary text-lg">
                     Итоговая цена зависит от состояния проекта и объёма работы.
                     Ниже — ориентиры, чтобы заранее понимать порядок стоимости.
                 </p>
 
             </div>
 
+            <div class="max-w-5xl mx-auto bg-card border border-white/5 rounded-3xl overflow-hidden">
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <!-- Диагностика -->
+                <div class="grid md:grid-cols-3 gap-4 p-6 border-b border-white/5 items-center">
 
+                    <div class="md:col-span-2">
+                        <h3 class="font-bold text-lg mb-1">
+                            Диагностика сайта
+                        </h3>
 
-                <!-- 1. Диагностика -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5 hover:border-accent/30 transition-all duration-300 hover:-translate-y-1">
+                        <p class="text-sm text-text-secondary">
+                            Разбор проекта, поиск проблем и определение приоритетов.
+                        </p>
+                    </div>
 
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-3xl">🔍</span>
-                        <span class="text-accent font-bold text-2xl">
+                    <div class="md:text-right">
+                        <span class="text-accent font-bold text-xl">
                             от 5 000 ₽
                         </span>
                     </div>
 
-                    <h3 class="text-xl font-bold mb-2">
-                        Диагностика сайта
-                    </h3>
-
-                    <p class="text-text-secondary text-sm mb-4">
-                        Разберусь в проекте, найду основные проблемы и определю,
-                        что имеет смысл исправлять в первую очередь.
-                    </p>
-
-                    <p class="text-text-tertiary text-xs">
-                        Подходит, если пока непонятно, где именно проблема
-                    </p>
-
                 </div>
 
+                <!-- Срочная помощь -->
+                <div class="grid md:grid-cols-3 gap-4 p-6 border-b border-white/5 items-center">
 
-                <!-- 2. Срочная помощь -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5 hover:border-accent/30 transition-all duration-300 hover:-translate-y-1">
+                    <div class="md:col-span-2">
+                        <h3 class="font-bold text-lg mb-1">
+                            Срочная помощь сайту
+                        </h3>
 
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-3xl">⚡</span>
-                        <span class="text-accent font-bold text-2xl">
+                        <p class="text-sm text-text-secondary">
+                            Поиск и исправление ошибок, из-за которых сайт или важные функции перестали работать.
+                        </p>
+                    </div>
+
+                    <div class="md:text-right">
+                        <span class="text-accent font-bold text-xl">
                             от 5 000 ₽
                         </span>
                     </div>
 
-                    <h3 class="text-xl font-bold mb-2">
-                        Срочная помощь сайту
-                    </h3>
-
-                    <p class="text-text-secondary text-sm mb-4">
-                        Поиск и исправление ошибок, из-за которых сайт
-                        или отдельные важные функции перестали работать.
-                    </p>
-
-                    <p class="text-text-tertiary text-xs">
-                        Ошибки, формы, заявки, корзина, оплата и другие сбои
-                    </p>
-
                 </div>
 
+                <!-- Доработка -->
+                <div class="grid md:grid-cols-3 gap-4 p-6 border-b border-white/5 items-center">
 
-                <!-- 3. Доработка -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5 hover:border-accent/30 transition-all duration-300 hover:-translate-y-1">
+                    <div class="md:col-span-2">
+                        <h3 class="font-bold text-lg mb-1">
+                            Доработка сайта
+                        </h3>
 
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-3xl">🛠️</span>
-                        <span class="text-accent font-bold text-2xl">
+                        <p class="text-sm text-text-secondary">
+                            Новый функционал, изменение логики, интерфейса, каталога, форм и других частей проекта.
+                        </p>
+                    </div>
+
+                    <div class="md:text-right">
+                        <span class="text-accent font-bold text-xl">
                             от 15 000 ₽
                         </span>
                     </div>
 
-                    <h3 class="text-xl font-bold mb-2">
-                        Доработка сайта
-                    </h3>
-
-                    <p class="text-text-secondary text-sm mb-4">
-                        Новый функционал, изменение существующей логики,
-                        интерфейса, каталога, форм или других частей проекта.
-                    </p>
-
-                    <p class="text-text-tertiary text-xs">
-                        Стоимость зависит от количества и сложности доработок
-                    </p>
-
                 </div>
 
+                <!-- Интеграции -->
+                <div class="grid md:grid-cols-3 gap-4 p-6 border-b border-white/5 items-center">
 
-                <!-- 4. Интеграции -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5 hover:border-accent/30 transition-all duration-300 hover:-translate-y-1">
+                    <div class="md:col-span-2">
+                        <h3 class="font-bold text-lg mb-1">
+                            Интеграции и автоматизация
+                        </h3>
 
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-3xl">🔗</span>
-                        <span class="text-accent font-bold text-2xl">
+                        <p class="text-sm text-text-secondary">
+                            CRM, 1С, оплата, доставка, внешние API и автоматизация ручных операций.
+                        </p>
+                    </div>
+
+                    <div class="md:text-right">
+                        <span class="text-accent font-bold text-xl">
                             от 20 000 ₽
                         </span>
                     </div>
 
-                    <h3 class="text-xl font-bold mb-2">
-                        Интеграции и автоматизация
-                    </h3>
-
-                    <p class="text-text-secondary text-sm mb-4">
-                        CRM, 1С, оплата, доставка, внешние API
-                        и автоматизация ручных операций.
-                    </p>
-
-                    <p class="text-text-tertiary text-xs">
-                        Простые и сложные интеграции оцениваются отдельно
-                    </p>
-
                 </div>
 
+                <!-- Новый проект -->
+                <div class="grid md:grid-cols-3 gap-4 p-6 border-b border-white/5 items-center">
 
-                <!-- 5. Создание проекта -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5 hover:border-accent/30 transition-all duration-300 hover:-translate-y-1">
+                    <div class="md:col-span-2">
+                        <h3 class="font-bold text-lg mb-1">
+                            Сайт или веб-сервис с нуля
+                        </h3>
 
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-3xl">🚀</span>
+                        <p class="text-sm text-text-secondary">
+                            Проектирование и разработка нового проекта под конкретную задачу.
+                        </p>
+                    </div>
+
+                    <div class="md:text-right">
                         <span class="text-accent font-bold text-xl">
                             По оценке
                         </span>
                     </div>
 
-                    <h3 class="text-xl font-bold mb-2">
-                        Сайт или веб-сервис с нуля
-                    </h3>
-
-                    <p class="text-text-secondary text-sm mb-4">
-                        Проектирование и разработка нового сайта,
-                        интернет-магазина или веб-сервиса под задачу бизнеса.
-                    </p>
-
-                    <p class="text-text-tertiary text-xs">
-                        Сначала определяем задачи и объём проекта
-                    </p>
-
                 </div>
 
+                <!-- Сопровождение -->
+                <div class="grid md:grid-cols-3 gap-4 p-6 items-center">
 
-                <!-- 6. Сопровождение -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5 hover:border-accent/30 transition-all duration-300 hover:-translate-y-1">
+                    <div class="md:col-span-2">
+                        <h3 class="font-bold text-lg mb-1">
+                            Сопровождение и развитие
+                        </h3>
 
-                    <div class="flex items-center justify-between mb-4">
-                        <span class="text-3xl">🛡️</span>
-
-                        <span class="text-accent font-bold text-2xl">
-                            от 15 000 ₽
-                            <span class="text-sm">/мес</span>
-                        </span>
+                        <p class="text-sm text-text-secondary">
+                            Регулярные исправления, доработки и помощь с сайтом.
+                        </p>
                     </div>
 
-                    <h3 class="text-xl font-bold mb-2">
-                        Сопровождение и развитие
-                    </h3>
-
-                    <p class="text-text-secondary text-sm mb-4">
-                        Регулярные исправления, доработки и помощь с сайтом
-                        без поиска нового исполнителя под каждую задачу.
-                    </p>
-
-                    <p class="text-text-tertiary text-xs">
-                        Формат и объём работы согласовываются заранее
-                    </p>
+                    <div class="md:text-right">
+                        <span class="text-accent font-bold text-xl">
+                            от 15 000 ₽/мес
+                        </span>
+                    </div>
 
                 </div>
 
             </div>
 
-
-            <div class="text-center mt-12">
+            <div class="text-center mt-10">
 
                 <p class="text-text-tertiary text-sm mb-6">
                     Если задача нестандартная — сначала разберёмся,
                     что именно нужно сделать, после этого смогу назвать стоимость.
                 </p>
 
-                <a href="#contacts"
-                data-goal="custom_task_cta_click"
-                class="inline-block px-8 py-4 bg-accent text-background font-bold rounded-xl hover:bg-accent/90 transition shadow-lg hover:shadow-xl">
-
+                <a
+                    href="#contacts"
+                    data-goal="custom_task_cta_click"
+                    class="inline-block px-8 py-4 bg-accent text-background font-bold rounded-xl hover:bg-accent/90 transition shadow-lg hover:shadow-xl"
+                >
                     Описать задачу
-
                 </a>
 
             </div>
@@ -1144,6 +1434,78 @@
 
             </div>
 
+            <!-- Личный блок -->
+            <div class="mt-12">
+
+                <div class="grid md:grid-cols-3 gap-8 items-center bg-card border border-white/5 rounded-3xl p-6 md:p-8">
+
+                    <!-- Текст -->
+                    <div class="md:col-span-2">
+
+                        <div class="inline-flex items-center px-4 py-2 bg-accent/10 border border-accent/30 rounded-full mb-5">
+                            <span class="text-accent font-medium">
+                                Работаю напрямую
+                            </span>
+                        </div>
+
+                        <h3 class="text-2xl md:text-3xl font-bold mb-4">
+                            Вы общаетесь со специалистом, который сам работает с вашим проектом
+                        </h3>
+
+                        <p class="text-text-secondary text-base md:text-lg leading-relaxed mb-6">
+                            Сам разбираюсь в задаче, предлагаю решение и выполняю работу.
+                            Не передаю проект менеджеру или другой команде — поэтому контекст не теряется,
+                            а вопросы можно обсуждать напрямую.
+                        </p>
+
+                        <div class="flex flex-wrap gap-4">
+
+                            <a
+                                href="#contacts"
+                                data-goal="personal_block_cta_click"
+                                class="inline-block px-8 py-4 bg-accent text-background font-bold rounded-xl hover:bg-accent/90 transition"
+                            >
+                                Обсудить задачу
+                            </a>
+
+                            <a
+                                href="https://t.me/artem_fullstack"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-goal="telegram_click"
+                                class="inline-block px-8 py-4 border border-white/10 text-white font-bold rounded-xl hover:border-accent/40 hover:text-accent transition"
+                            >
+                                Написать в Telegram
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Фото -->
+                    <div class="relative">
+
+                        <div class="absolute inset-0 bg-gradient-to-br from-accent/20 to-accent2/20 rounded-3xl blur-3xl"></div>
+
+                        <div class="relative overflow-hidden rounded-3xl border border-white/10 bg-background">
+
+                            <x-auto-img
+                                src="hero/photo.png"
+                                alt="Артём — Code Doctor"
+                                class="w-full h-auto object-contain object-center"
+                                :lazy="true"
+                                sizes="(max-width: 768px) 100vw, 33vw"
+                            />
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+            </div>
+
         </div>
     </section>
     
@@ -1151,7 +1513,7 @@
     <section class="py-20">
         <div class="container">
 
-            <div class="text-center mb-12">
+            <div class="max-w-3xl mx-auto text-center mb-10">
 
                 <div class="inline-flex items-center px-4 py-2 bg-accent/10 border border-accent/30 rounded-full mb-6">
                     <span class="text-accent font-medium">
@@ -1163,7 +1525,7 @@
                     С какими проектами и технологиями работаю
                 </h2>
 
-                <p class="text-text-secondary text-lg max-w-2xl mx-auto">
+                <p class="text-text-secondary text-lg">
                     Основной опыт — PHP-проекты и интернет-магазины.
                     При работе с существующим сайтом важнее не конкретная CMS,
                     а возможность разобраться в его устройстве и аккуратно продолжить развитие.
@@ -1171,158 +1533,161 @@
 
             </div>
 
+            <div class="max-w-5xl mx-auto bg-card border border-white/5 rounded-3xl p-6 md:p-8">
 
-            <div class="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-6xl mx-auto">
+                <div class="space-y-6">
 
-                <!-- Основной стек -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5">
+                    <!-- Основной стек -->
+                    <div class="grid md:grid-cols-3 gap-4 items-start">
 
-                    <div class="text-3xl mb-4">
-                        🧩
+                        <div>
+                            <div class="text-sm text-text-tertiary mb-1">
+                                Основной стек
+                            </div>
+
+                            <div class="font-bold">
+                                PHP / MySQL / JavaScript
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2 flex flex-wrap gap-2">
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">PHP</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">MySQL</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">JavaScript</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">HTML / CSS</span>
+                        </div>
+
                     </div>
 
-                    <h3 class="text-xl font-bold mb-3">
-                        Основной стек
-                    </h3>
 
-                    <p class="text-text-secondary mb-4">
-                        Технологии, с которыми работаю наиболее уверенно.
-                    </p>
+                    <div class="border-t border-white/5"></div>
 
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">PHP</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">MySQL</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">JavaScript</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">HTML / CSS</span>
+
+                    <!-- CMS -->
+                    <div class="grid md:grid-cols-3 gap-4 items-start">
+
+                        <div>
+                            <div class="text-sm text-text-tertiary mb-1">
+                                CMS и существующие проекты
+                            </div>
+
+                            <div class="font-bold">
+                                Интернет-магазины и сайты
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2 flex flex-wrap gap-2">
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">OpenCart</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">MODX</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">WordPress</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">Самописные сайты</span>
+                        </div>
+
                     </div>
 
-                </div>
+
+                    <div class="border-t border-white/5"></div>
 
 
-                <!-- CMS и проекты -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5">
+                    <!-- Frameworks -->
+                    <div class="grid md:grid-cols-3 gap-4 items-start">
 
-                    <div class="text-3xl mb-4">
-                        🛒
+                        <div>
+                            <div class="text-sm text-text-tertiary mb-1">
+                                Фреймворки
+                            </div>
+
+                            <div class="font-bold">
+                                Современные веб-проекты
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2 flex flex-wrap gap-2">
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">Laravel</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">Vue</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">Tailwind</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">Git</span>
+                        </div>
+
                     </div>
 
-                    <h3 class="text-xl font-bold mb-3">
-                        CMS и существующие проекты
-                    </h3>
 
-                    <p class="text-text-secondary mb-4">
-                        Могу работать как с хорошо знакомыми системами,
-                        так и разбираться в уже существующем проекте.
-                    </p>
+                    <div class="border-t border-white/5"></div>
 
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">OpenCart</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">MODX</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">WordPress</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">Самописные сайты</span>
+
+                    <!-- Интеграции -->
+                    <div class="grid md:grid-cols-3 gap-4 items-start">
+
+                        <div>
+                            <div class="text-sm text-text-tertiary mb-1">
+                                Интеграции
+                            </div>
+
+                            <div class="font-bold">
+                                Связь сайта с сервисами
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2 flex flex-wrap gap-2">
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">REST API</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">1С</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">CRM</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">Оплата</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">Доставка</span>
+                        </div>
+
                     </div>
 
-                </div>
+
+                    <div class="border-t border-white/5"></div>
 
 
-                <!-- Frameworks -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5">
+                    <!-- Сервер -->
+                    <div class="grid md:grid-cols-3 gap-4 items-start">
 
-                    <div class="text-3xl mb-4">
-                        ⚙️
+                        <div>
+                            <div class="text-sm text-text-tertiary mb-1">
+                                Сервер и окружение
+                            </div>
+
+                            <div class="font-bold">
+                                Работа не только с кодом
+                            </div>
+                        </div>
+
+                        <div class="md:col-span-2 flex flex-wrap gap-2">
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">Linux</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">Nginx</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">PHP-FPM</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">MySQL</span>
+                        </div>
+
                     </div>
 
-                    <h3 class="text-xl font-bold mb-3">
-                        Фреймворки и современные проекты
-                    </h3>
 
-                    <p class="text-text-secondary mb-4">
-                        Есть опыт и понимание проектов на современных
-                        backend- и frontend-инструментах.
-                    </p>
-
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">Laravel</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">Vue</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">Tailwind</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">Git</span>
-                    </div>
-
-                </div>
+                    <div class="border-t border-white/5"></div>
 
 
-                <!-- Интеграции -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5">
+                    <!-- Аналитика -->
+                    <div class="grid md:grid-cols-3 gap-4 items-start">
 
-                    <div class="text-3xl mb-4">
-                        🔌
-                    </div>
+                        <div>
+                            <div class="text-sm text-text-tertiary mb-1">
+                                Аналитика и данные
+                            </div>
 
-                    <h3 class="text-xl font-bold mb-3">
-                        Интеграции
-                    </h3>
+                            <div class="font-bold">
+                                Данные сайта и отчёты
+                            </div>
+                        </div>
 
-                    <p class="text-text-secondary mb-4">
-                        Связь сайта с внешними системами и сервисами.
-                    </p>
+                        <div class="md:col-span-2 flex flex-wrap gap-2">
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">Яндекс.Метрика</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">E-commerce</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">Excel / CSV</span>
+                            <span class="px-3 py-2 bg-background/50 rounded-lg text-sm text-text-secondary">Python</span>
+                        </div>
 
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">REST API</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">1С</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">CRM</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">Оплата</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">Доставка</span>
-                    </div>
-
-                </div>
-
-
-                <!-- Сервер -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5">
-
-                    <div class="text-3xl mb-4">
-                        🖥️
-                    </div>
-
-                    <h3 class="text-xl font-bold mb-3">
-                        Серверная часть
-                    </h3>
-
-                    <p class="text-text-secondary mb-4">
-                        Могу работать не только с кодом сайта,
-                        но и с его окружением.
-                    </p>
-
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">Linux</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">Nginx</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">PHP-FPM</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">MySQL</span>
-                    </div>
-
-                </div>
-
-
-                <!-- Аналитика -->
-                <div class="bg-card p-6 rounded-2xl border border-white/5">
-
-                    <div class="text-3xl mb-4">
-                        📊
-                    </div>
-
-                    <h3 class="text-xl font-bold mb-3">
-                        Аналитика и данные
-                    </h3>
-
-                    <p class="text-text-secondary mb-4">
-                        Техническая настройка аналитики и работа с данными сайта.
-                    </p>
-
-                    <div class="flex flex-wrap gap-2">
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">Яндекс.Метрика</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">E-commerce</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">Excel / CSV</span>
-                        <span class="px-3 py-1 bg-background/50 rounded-lg text-sm text-text-secondary">Python</span>
                     </div>
 
                 </div>
@@ -1625,41 +1990,6 @@
     @include('components.schema')
     <script>
         document.addEventListener('DOMContentLoaded', function() {
-            
-            // ========== Обработка фото ==========
-            const realPhoto = document.getElementById('real-photo');
-            if (realPhoto) {
-                const placeholder = document.getElementById('photo-placeholder');
-                
-                realPhoto.onload = function() {
-                    if (placeholder) {
-                        placeholder.style.display = 'none';
-                        realPhoto.classList.remove('hidden');
-                    }
-                };
-                
-                realPhoto.onerror = function() {
-                    if (placeholder) {
-                        placeholder.style.display = 'flex';
-                        realPhoto.classList.add('hidden');
-                    }
-                };
-                
-                // Проверяем сразу
-                if (realPhoto.complete) {
-                    if (realPhoto.naturalHeight === 0) {
-                        if (placeholder) {
-                            placeholder.style.display = 'flex';
-                            realPhoto.classList.add('hidden');
-                        }
-                    } else {
-                        if (placeholder) {
-                            placeholder.style.display = 'none';
-                            realPhoto.classList.remove('hidden');
-                        }
-                    }
-                }
-            }
             
             // ========== Обработка формы ==========
             const form = document.getElementById('contact-form');
