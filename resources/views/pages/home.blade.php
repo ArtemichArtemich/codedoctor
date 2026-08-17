@@ -884,6 +884,218 @@
         </div>
 
     </section>
+
+    <!-- Code Doctor Toolkit -->
+    <section class="py-20 bg-card/30">
+        <div class="container">
+
+            <div class="max-w-6xl mx-auto">
+
+                <div class="grid lg:grid-cols-2 gap-10 items-center bg-card border border-white/5 rounded-3xl p-6 md:p-10">
+
+                    <!-- Текст -->
+                    <div>
+
+                        <div class="inline-flex items-center px-4 py-2 bg-accent/10 border border-accent/30 rounded-full mb-6">
+                            <span class="text-accent font-medium">
+                                Собственные инструменты
+                            </span>
+                        </div>
+
+                        <h2 class="text-3xl md:text-4xl font-bold mb-5">
+                            Code Doctor Toolkit
+                        </h2>
+
+                        <p class="text-text-secondary text-lg leading-relaxed mb-6">
+                            Для части технических проверок использую собственный набор инструментов
+                            на Python. Он помогает быстрее собирать техническую картину сайта,
+                            находить типовые проблемы и не проверять всё вручную.
+                        </p>
+
+                        <div class="grid sm:grid-cols-2 gap-3 mb-8">
+
+                            <div class="flex items-start gap-3">
+                                <span class="text-accent">✓</span>
+                                <span class="text-text-secondary">
+                                    Диагностика сайта
+                                </span>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <span class="text-accent">✓</span>
+                                <span class="text-text-secondary">
+                                    SEO-скан страниц
+                                </span>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <span class="text-accent">✓</span>
+                                <span class="text-text-secondary">
+                                    Поиск битых ссылок
+                                </span>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <span class="text-accent">✓</span>
+                                <span class="text-text-secondary">
+                                    Проверка SSL / TLS
+                                </span>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <span class="text-accent">✓</span>
+                                <span class="text-text-secondary">
+                                    Анализ access.log
+                                </span>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <span class="text-accent">✓</span>
+                                <span class="text-text-secondary">
+                                    Сравнение страниц
+                                </span>
+                            </div>
+
+                            <div class="flex items-start gap-3">
+                                <span class="text-accent">✓</span>
+                                <span class="text-text-secondary">
+                                    Мониторинг сайта
+                                </span>
+                            </div>
+
+                        </div>
+
+                        <div class="flex flex-wrap gap-4">
+
+                            <a
+                                href="https://github.com/ArtemichArtemich/code-doctor-toolkit"
+                                target="_blank"
+                                rel="noopener noreferrer"
+                                data-goal="github_toolkit_click"
+                                class="inline-block px-8 py-4 bg-accent text-background font-bold rounded-xl hover:bg-accent/90 transition shadow-lg hover:shadow-xl"
+                            >
+                                Посмотреть на GitHub
+                            </a>
+
+                            <a
+                                href="{{ url('/services/razbor-saita-i-texniceskaia-diagnostika') }}"
+                                class="inline-block px-8 py-4 border border-white/10 text-white font-bold rounded-xl hover:border-accent/40 hover:text-accent transition"
+                            >
+                                О диагностике сайта
+                            </a>
+
+                        </div>
+
+                    </div>
+
+
+                    <!-- Терминал -->
+                    <div class="bg-background border border-white/10 rounded-2xl overflow-hidden">
+
+                        <!-- Верхняя панель -->
+                        <div class="flex items-center justify-between px-5 py-4 border-b border-white/5">
+
+                            <div class="flex items-center gap-2">
+                                <span class="w-3 h-3 rounded-full bg-white/10"></span>
+                                <span class="w-3 h-3 rounded-full bg-white/10"></span>
+                                <span class="w-3 h-3 rounded-full bg-white/10"></span>
+                            </div>
+
+                            <span class="text-xs text-text-tertiary">
+                                Code Doctor Toolkit
+                            </span>
+
+                        </div>
+
+                        <!-- Содержимое -->
+                        <div class="p-6 font-mono text-sm">
+
+                            <div class="text-text-tertiary mb-5">
+                                $ python code_doctor.py
+                            </div>
+
+                            <div class="text-white mb-4">
+                                Code Doctor Toolkit
+                            </div>
+
+                            <div class="space-y-2 text-text-secondary mb-6">
+                                <div>
+                                    <span class="text-accent">[1]</span>
+                                    Проверить сайт
+                                </div>
+
+                                <div>
+                                    <span class="text-accent">[2]</span>
+                                    SEO-скан
+                                </div>
+
+                                <div>
+                                    <span class="text-accent">[3]</span>
+                                    Битые ссылки
+                                </div>
+
+                                <div>
+                                    <span class="text-accent">[4]</span>
+                                    Проверить SSL
+                                </div>
+
+                                <div>
+                                    <span class="text-accent">[5]</span>
+                                    Анализ access.log
+                                </div>
+
+                                <div>
+                                    <span class="text-accent">[6]</span>
+                                    Сравнить страницы
+                                </div>
+
+                                <div>
+                                    <span class="text-accent">[7]</span>
+                                    Мониторинг сайта
+                                </div>
+                            </div>
+
+                            <div class="border-t border-white/5 pt-5 space-y-2">
+
+                                <div class="text-accent">
+                                    ✓ HTTP 200
+                                </div>
+
+                                <div class="text-accent">
+                                    ✓ SSL-сертификат корректен
+                                </div>
+
+                                <div class="text-accent">
+                                    ✓ Битых внутренних ссылок не обнаружено
+                                </div>
+
+                                <div class="text-text-tertiary">
+                                    Проверка завершена.
+                                </div>
+
+                            </div>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+                <!-- Пояснение -->
+                <div class="max-w-3xl mx-auto text-center mt-6">
+
+                    <p class="text-sm text-text-tertiary">
+                        Toolkit не заменяет полноценные системы аудита и мониторинга.
+                        Это собственный набор инструментов для автоматизации регулярных
+                        технических проверок в работе с сайтами.
+                    </p>
+
+                </div>
+
+            </div>
+
+        </div>
+    </section>
         
     <!-- Кейсы -->
     <section id="cases" class="py-20">

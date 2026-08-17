@@ -1,59 +1,310 @@
-<p align="center"><a href="https://laravel.com" target="_blank"><img src="https://raw.githubusercontent.com/laravel/art/master/logo-lockup/5%20SVG/2%20CMYK/1%20Full%20Color/laravel-logolockup-cmyk-red.svg" width="400" alt="Laravel Logo"></a></p>
+# Code Doctor
 
-<p align="center">
-<a href="https://github.com/laravel/framework/actions"><img src="https://github.com/laravel/framework/workflows/tests/badge.svg" alt="Build Status"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/dt/laravel/framework" alt="Total Downloads"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/v/laravel/framework" alt="Latest Stable Version"></a>
-<a href="https://packagist.org/packages/laravel/framework"><img src="https://img.shields.io/packagist/l/laravel/framework" alt="License"></a>
-</p>
+Сайт-портфолио и рабочая платформа для услуг по разработке, диагностике, доработке и сопровождению сайтов.
 
-## About Laravel
+Проект создан для [code-doctor.ru](https://code-doctor.ru) и используется как полноценный рабочий сайт: с услугами, кейсами, блогом, формой заявок, административной панелью и внутренними инструментами управления контентом.
 
-Laravel is a web application framework with expressive, elegant syntax. We believe development must be an enjoyable and creative experience to be truly fulfilling. Laravel takes the pain out of development by easing common tasks used in many web projects, such as:
+## О проекте
 
-- [Simple, fast routing engine](https://laravel.com/docs/routing).
-- [Powerful dependency injection container](https://laravel.com/docs/container).
-- Multiple back-ends for [session](https://laravel.com/docs/session) and [cache](https://laravel.com/docs/cache) storage.
-- Expressive, intuitive [database ORM](https://laravel.com/docs/eloquent).
-- Database agnostic [schema migrations](https://laravel.com/docs/migrations).
-- [Robust background job processing](https://laravel.com/docs/queues).
-- [Real-time event broadcasting](https://laravel.com/docs/broadcasting).
+Code Doctor — это не демонстрационный шаблон Laravel, а реальный веб-проект для работы с клиентами.
 
-Laravel is accessible, powerful, and provides tools required for large, robust applications.
+Основные задачи сайта:
 
-## Learning Laravel
+- представить услуги по разработке и технической поддержке сайтов;
+- показать реальные кейсы и выполненные проекты;
+- публиковать статьи и технические материалы;
+- принимать заявки с сайта;
+- управлять услугами, кейсами и контентом через административную панель;
+- собирать базовую статистику и события;
+- поддерживать SEO и техническую структуру сайта.
 
-Laravel has the most extensive and thorough [documentation](https://laravel.com/docs) and video tutorial library of all modern web application frameworks, making it a breeze to get started with the framework. You can also check out [Laravel Learn](https://laravel.com/learn), where you will be guided through building a modern Laravel application.
+Основной акцент проекта — понятная подача технических услуг без перегруза клиента технологиями: проблема → решение → результат.
 
-If you don't feel like reading, [Laracasts](https://laracasts.com) can help. Laracasts contains thousands of video tutorials on a range of topics including Laravel, modern PHP, unit testing, and JavaScript. Boost your skills by digging into our comprehensive video library.
+---
 
-## Laravel Sponsors
+## Возможности
 
-We would like to extend our thanks to the following sponsors for funding Laravel development. If you are interested in becoming a sponsor, please visit the [Laravel Partners program](https://partners.laravel.com).
+### Услуги
 
-### Premium Partners
+На сайте представлены основные направления работы:
 
-- **[Vehikl](https://vehikl.com)**
-- **[Tighten Co.](https://tighten.co)**
-- **[Kirschbaum Development Group](https://kirschbaumdevelopment.com)**
-- **[64 Robots](https://64robots.com)**
-- **[Curotec](https://www.curotec.com/services/technologies/laravel)**
-- **[DevSquad](https://devsquad.com/hire-laravel-developers)**
-- **[Redberry](https://redberry.international/laravel-development)**
-- **[Active Logic](https://activelogic.com)**
+- диагностика сайта;
+- срочная помощь и исправление ошибок;
+- доработка сайтов и интернет-магазинов;
+- создание сайтов и веб-сервисов;
+- интеграции и автоматизация;
+- техническое сопровождение и развитие проектов.
 
-## Contributing
+Для каждой услуги предусмотрена отдельная посадочная страница.
 
-Thank you for considering contributing to the Laravel framework! The contribution guide can be found in the [Laravel documentation](https://laravel.com/docs/contributions).
+### Кейсы
 
-## Code of Conduct
+Раздел с реальными проектами и выполненными задачами.
 
-In order to ensure that the Laravel community is welcoming to all, please review and abide by the [Code of Conduct](https://laravel.com/docs/contributions#code-of-conduct).
+Карточки и страницы кейсов поддерживают:
 
-## Security Vulnerabilities
+- название и краткое название;
+- категорию проекта;
+- стоимость;
+- длительность;
+- сложность;
+- клиента;
+- ссылку на сайт;
+- логотип или fallback-оформление;
+- описание задачи;
+- решение;
+- технологии;
+- результаты;
+- изображения;
+- теги;
+- сортировку и публикацию.
 
-If you discover a security vulnerability within Laravel, please send an e-mail to Taylor Otwell via [taylor@laravel.com](mailto:taylor@laravel.com). All security vulnerabilities will be promptly addressed.
+### Блог
 
-## License
+Раздел для статей о:
 
-The Laravel framework is open-sourced software licensed under the [MIT license](https://opensource.org/licenses/MIT).
+- диагностике сайтов;
+- типичных технических проблемах;
+- OpenCart;
+- SEO;
+- аналитике;
+- интеграциях;
+- сопровождении и развитии веб-проектов.
+
+Блог используется одновременно как контентная часть сайта и как канал органического привлечения клиентов.
+
+### Заявки
+
+На сайте есть форма обратной связи с отправкой заявки без перезагрузки страницы.
+
+Поддерживаются:
+
+- имя;
+- контакт для связи;
+- ссылка на сайт;
+- описание задачи;
+- согласие с политикой обработки персональных данных;
+- серверная валидация;
+- отображение ошибок;
+- аналитические события после успешной отправки.
+
+### Административная панель
+
+Для управления проектом используется Filament.
+
+Через административную часть можно работать с контентом сайта и внутренними сущностями проекта без ручного редактирования шаблонов и базы данных.
+
+### SEO и техническая часть
+
+В проекте предусмотрены:
+
+- Title и Description;
+- canonical;
+- Open Graph;
+- sitemap.xml;
+- robots.txt;
+- человекопонятные URL;
+- редиректы;
+- страницы политики и cookies;
+- Schema.org;
+- оптимизированная загрузка изображений;
+- lazy loading;
+- адаптивные изображения;
+- аналитические события.
+
+---
+
+## Стек
+
+### Backend
+
+- PHP
+- Laravel
+- MySQL
+- Filament
+
+### Frontend
+
+- Blade
+- Tailwind CSS
+- JavaScript
+- Vite
+
+### Инфраструктура и инструменты
+
+- Git
+- Composer
+- npm
+- Laravel migrations
+- Laravel queues / jobs
+- Mail
+- SEO и веб-аналитика
+
+---
+
+## Структура проекта
+
+```text
+codedoctor/
+├── app/
+│   ├── Data/
+│   ├── Filament/
+│   ├── Http/
+│   ├── Jobs/
+│   ├── Mail/
+│   ├── Models/
+│   ├── Providers/
+│   ├── Services/
+│   └── View/
+│
+├── bootstrap/
+├── config/
+├── database/
+├── public/
+├── resources/
+├── routes/
+├── storage/
+├── tests/
+│
+├── artisan
+├── composer.json
+├── package.json
+├── tailwind.config.js
+└── vite.config.js
+```
+
+---
+
+## Локальный запуск
+
+### Требования
+
+Понадобятся:
+
+- PHP;
+- Composer;
+- MySQL;
+- Node.js / npm.
+
+### 1. Клонировать репозиторий
+
+```bash
+git clone https://github.com/ArtemichArtemich/codedoctor.git
+cd codedoctor
+```
+
+### 2. Установить PHP-зависимости
+
+```bash
+composer install
+```
+
+### 3. Установить frontend-зависимости
+
+```bash
+npm install
+```
+
+### 4. Создать `.env`
+
+```bash
+cp .env.example .env
+```
+
+В Windows можно просто создать `.env` на основе `.env.example`.
+
+### 5. Создать ключ приложения
+
+```bash
+php artisan key:generate
+```
+
+### 6. Настроить базу данных
+
+Указать параметры подключения в `.env`:
+
+```env
+DB_DATABASE=
+DB_USERNAME=
+DB_PASSWORD=
+```
+
+### 7. Выполнить миграции
+
+```bash
+php artisan migrate
+```
+
+### 8. Создать storage link
+
+```bash
+php artisan storage:link
+```
+
+### 9. Собрать frontend
+
+Для разработки:
+
+```bash
+npm run dev
+```
+
+Для production:
+
+```bash
+npm run build
+```
+
+### 10. Запустить Laravel
+
+```bash
+php artisan serve
+```
+
+После этого сайт будет доступен по адресу, который покажет Laravel.
+
+---
+
+## Связанный проект: Code Doctor Toolkit
+
+Отдельно развивается [Code Doctor Toolkit](https://github.com/ArtemichArtemich/code-doctor-toolkit) — набор CLI-инструментов на Python для технической диагностики сайтов.
+
+Toolkit умеет:
+
+- проверять доступность сайта;
+- проводить SEO-скан страницы;
+- искать битые внутренние ссылки;
+- проверять SSL / TLS;
+- анализировать access.log;
+- сравнивать страницы;
+- мониторить доступность и время ответа сайта.
+
+Он развивается как дополнительный практический инструмент для диагностики и сопровождения проектов.
+
+---
+
+## Статус проекта
+
+Проект используется и продолжает развиваться.
+
+В дальнейшем планируется развитие:
+
+- внутренних инструментов диагностики;
+- аналитики;
+- автоматизации;
+- контентной части;
+- SEO;
+- кейсов и страниц услуг;
+- интеграции с Code Doctor Toolkit.
+
+---
+
+## Сайт
+
+[code-doctor.ru](https://code-doctor.ru)
+
+## Автор
+
+Артём — Code Doctor
+
+Разработка, диагностика, доработка и сопровождение сайтов.
