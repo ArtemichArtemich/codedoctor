@@ -11,15 +11,17 @@ jobs:
     timeout-minutes: 20
 
     steps:
+      # =====================================================
+      # CHECKOUT
+      # =====================================================
+
       - name: Checkout code
         uses: actions/checkout@v4
 
-      - name: Setup PHP
-        uses: shivammathur/setup-php@v2
-        with:
-          php-version: '8.2'
-          extensions: mbstring, pdo_mysql, bcmath, intl, fileinfo, zip
-          tools: composer
+
+      # =====================================================
+      # NODE
+      # =====================================================
 
       - name: Setup Node.js
         uses: actions/setup-node@v4
@@ -27,24 +29,21 @@ jobs:
           node-version: '22'
           cache: 'npm'
 
-      - name: Prepare Laravel directories for build
-        run: |
-          mkdir -p bootstrap/cache
-          mkdir -p storage/app
-          mkdir -p storage/framework/cache
-          mkdir -p storage/framework/sessions
-          mkdir -p storage/framework/views
-          mkdir -p storage/logs
-          chmod -R 775 bootstrap/cache storage
 
-      - name: Install Composer dependencies for build
-        run: composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction --no-scripts
+      # =====================================================
+      # FRONTEND BUILD
+      # =====================================================
 
       - name: Install NPM dependencies
         run: npm ci
 
       - name: Build frontend
         run: npm run build
+
+
+      # =====================================================
+      # PREPARE DEPLOY
+      # =====================================================
 
       - name: Prepare deploy directory
         run: |
@@ -69,6 +68,11 @@ jobs:
 
           echo "DEPLOY SHA: $GITHUB_SHA" > deploy/DEPLOY_MARKER.txt
           echo "DEPLOY TIME: $(date)" >> deploy/DEPLOY_MARKER.txt
+
+
+      # =====================================================
+      # CHECK DEPLOY DIRECTORY
+      # =====================================================
 
       - name: Check deploy directory
         run: |
@@ -107,6 +111,11 @@ jobs:
             exit 1
           fi
 
+
+      # =====================================================
+      # FTP DEPLOY
+      # =====================================================
+
       - name: Deploy to REG.RU via FTP
         uses: SamKirkland/FTP-Deploy-Action@v4.3.5
         with:
@@ -125,14 +134,23 @@ jobs:
             **/.env.*
             **/storage/**
 
-      - name: Install Composer dependencies and optimize Laravel on server
+
+      # =====================================================
+      # SERVER
+      # =====================================================
+
+      - name: Install dependencies and optimize Laravel
         uses: appleboy/ssh-action@v1.0.3
         with:
           host: ${{ secrets.SSH_HOST }}
           username: ${{ secrets.SSH_USERNAME }}
           password: ${{ secrets.SSH_PASSWORD }}
           script: |
+            set -e
+
             cd ~/www/code-doctor.ru
+
+            echo "Preparing Laravel directories..."
 
             mkdir -p bootstrap/cache
             mkdir -p storage/app
@@ -143,14 +161,28 @@ jobs:
 
             chmod -R 775 bootstrap/cache storage
 
-            composer install --no-dev --prefer-dist --optimize-autoloader --no-interaction
+            echo "Installing Composer dependencies..."
+
+            composer install \
+              --no-dev \
+              --prefer-dist \
+              --optimize-autoloader \
+              --no-interaction
+
+            echo "Clearing Laravel caches..."
 
             php artisan config:clear
             php artisan cache:clear
             php artisan route:clear
             php artisan view:clear
 
+            echo "Running migrations..."
+
             php artisan migrate --force
+
+            echo "Caching Laravel configuration..."
 
             php artisan config:cache
             php artisan route:cache
+
+            echo "Deploy completed successfully."
