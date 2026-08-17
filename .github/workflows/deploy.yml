@@ -20,6 +20,67 @@ jobs:
 
 
       # =====================================================
+      # PHP / COMPOSER
+      # Нужен в том числе для сборки темы Filament,
+      # которая импортирует CSS из vendor/
+      # =====================================================
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, pdo_mysql, bcmath, intl, fileinfo, zip
+          tools: composer
+
+
+      # =====================================================
+      # COMPOSER CACHE
+      # =====================================================
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> "$GITHUB_OUTPUT"
+
+      - name: Cache Composer packages
+        uses: actions/cache@v4
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-composer-${{ hashFiles('**/composer.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-composer-
+
+
+      # =====================================================
+      # PREPARE LARAVEL
+      # =====================================================
+
+      - name: Prepare Laravel directories for build
+        run: |
+          mkdir -p bootstrap/cache
+          mkdir -p storage/app
+          mkdir -p storage/framework/cache
+          mkdir -p storage/framework/sessions
+          mkdir -p storage/framework/views
+          mkdir -p storage/logs
+
+          chmod -R 775 bootstrap/cache storage
+
+
+      # =====================================================
+      # PHP DEPENDENCIES FOR BUILD
+      # =====================================================
+
+      - name: Install Composer dependencies for build
+        run: |
+          composer install \
+            --no-dev \
+            --prefer-dist \
+            --optimize-autoloader \
+            --no-interaction \
+            --no-scripts
+
+
+      # =====================================================
       # NODE
       # =====================================================
 
@@ -31,7 +92,7 @@ jobs:
 
 
       # =====================================================
-      # FRONTEND BUILD
+      # FRONTEND
       # =====================================================
 
       - name: Install NPM dependencies
@@ -42,7 +103,7 @@ jobs:
 
 
       # =====================================================
-      # PREPARE DEPLOY
+      # PREPARE DEPLOY DIRECTORY
       # =====================================================
 
       - name: Prepare deploy directory
@@ -136,7 +197,7 @@ jobs:
 
 
       # =====================================================
-      # SERVER
+      # PRODUCTION SERVER
       # =====================================================
 
       - name: Install dependencies and optimize Laravel
@@ -180,7 +241,7 @@ jobs:
 
             php artisan migrate --force
 
-            echo "Caching Laravel configuration..."
+            echo "Caching Laravel..."
 
             php artisan config:cache
             php artisan route:cache
