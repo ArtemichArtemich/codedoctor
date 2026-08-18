@@ -49,6 +49,8 @@ class TrackerProjectTaskController extends Controller
 
     public function edit(TrackerProject $trackerProject, Task $task): View
     {
+        $this->ensureTaskBelongsToProject($trackerProject, $task);
+
         $statuses = TaskStatus::orderBy('sort')->get();
         $priorities = TaskPriority::orderBy('sort')->get();
         $users = User::orderBy('name')->get();
@@ -58,8 +60,9 @@ class TrackerProjectTaskController extends Controller
 
     public function update(UpdateTaskRequest $request, TrackerProject $trackerProject, Task $task): RedirectResponse
     {
-        $data = $request->validated();
-        $task->update($data);
+        $this->ensureTaskBelongsToProject($trackerProject, $task);
+
+        $task->update($request->validated());
 
         return redirect()
             ->route('admin.tracker-projects.tasks.index', $trackerProject)
@@ -68,11 +71,18 @@ class TrackerProjectTaskController extends Controller
 
     public function destroy(TrackerProject $trackerProject, Task $task): RedirectResponse
     {
+        $this->ensureTaskBelongsToProject($trackerProject, $task);
+
         $title = $task->title;
         $task->delete();
 
         return redirect()
             ->route('admin.tracker-projects.tasks.index', $trackerProject)
             ->with('success', "Задача «{$title}» удалена");
+    }
+
+    private function ensureTaskBelongsToProject(TrackerProject $trackerProject, Task $task): void
+    {
+        abort_unless($task->tracker_project_id === $trackerProject->id, 404);
     }
 }
