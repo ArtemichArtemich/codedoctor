@@ -17,7 +17,10 @@ class TaskPrioritySeeder extends Seeder
         ];
 
         foreach ($priorities as $priority) {
-            TaskPriority::create($priority);
+            TaskPriority::updateOrCreate(
+                ['name' => $priority['name']],
+                $priority
+            );
         }
     }
 }
