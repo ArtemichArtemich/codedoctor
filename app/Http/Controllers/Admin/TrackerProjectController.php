@@ -33,7 +33,13 @@ class TrackerProjectController extends Controller
 
     public function show(TrackerProject $trackerProject): View
     {
-        return view('admin.tracker-projects.show', compact('trackerProject'));
+        $tasks = $trackerProject->tasks()
+            ->with(['status', 'priority', 'assignedTo'])
+            ->orderBy('sort')
+            ->orderByDesc('created_at')
+            ->get();
+
+        return view('admin.tracker-projects.show', compact('trackerProject', 'tasks'));
     }
 
     public function edit(TrackerProject $trackerProject): View
