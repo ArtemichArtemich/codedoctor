@@ -3,20 +3,19 @@
 namespace Database\Seeders;
 
 use App\Models\User;
-use Illuminate\Database\Console\Seeds\WithoutModelEvents;
 use Illuminate\Database\Seeder;
 
 class DatabaseSeeder extends Seeder
 {
-    use WithoutModelEvents;
-
-    /**
-     * Seed the application's database.
-     */
     public function run(): void
     {
-        // User::factory(10)->create();
+        // 1. Сначала создаём статусы и приоритеты
+        $this->call([
+            TaskStatusSeeder::class,
+            TaskPrioritySeeder::class,
+        ]);
 
+        // 2. Потом создаём тестового пользователя (опционально)
         User::factory()->create([
             'name' => 'Test User',
             'email' => 'test@example.com',
