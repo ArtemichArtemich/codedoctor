@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\Admin\TrackerProjectController;
+use App\Http\Controllers\Admin\TrackerProjectTaskController;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\BlogController;
 use App\Http\Controllers\CaseController;
@@ -18,6 +19,14 @@ Route::get('/', [HomeController::class, 'index'])
 
 Route::resource('admin/tracker-projects', TrackerProjectController::class)
     ->names('admin.tracker-projects');
+
+Route::prefix('admin/tracker-projects/{tracker_project}')
+    ->name('admin.tracker-projects.')
+    ->group(function () {
+        Route::resource('tasks', TrackerProjectTaskController::class)
+            ->except(['show'])
+            ->names('tasks');
+    });
 
 // Формы
 Route::post('/contact', [ContactController::class, 'store'])
