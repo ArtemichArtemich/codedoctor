@@ -42,5 +42,10 @@
             @endif
         </div>
     </div>
+    
+    <div class="mt-4">
+        <h3>Задачи</h3>
+        <p class="text-muted">Список задач появится на следующем этапе.</p>
+    </div>
 </div>
 @endsection
