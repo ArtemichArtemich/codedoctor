@@ -35,3 +35,63 @@ cmd
 
 "C:\Program Files\MySQL\MySQL Server 8.4\bin\mysql.exe" --default-character-set=utf8mb4 --binary-mode=1 -u root -p codedoctor_local < "C:\Users\admin\Desktop\codedoctor_utf8mb4.sql"
 
+----------------------- Какой процесс предлагаю (процесс проверки наставника) ------------------------
+Шаг 1. Ты делаешь отдельную ветку под задачу
+git checkout main
+git pull
+git checkout -b feature/task-tracker-base
+Шаг 2. Делаешь изменения и коммит
+git add .
+git commit -m "feat: add task tracker base"
+git push origin feature/task-tracker-base
+Шаг 3. Создаёшь Pull Request в GitHub
+
+Лучше не просто ветку, а именно PR:
+
+feature/task-tracker-base → main
+
+Название:
+
+feat: add task tracker base
+
+Описание PR:
+
+Что сделано:
+- добавлены модели Task Tracker
+- добавлены миграции
+- добавлены связи
+- добавлены сидеры
+
+
+Как проверить:
+- php artisan migrate:fresh --seed
+- php artisan tinker
+- App\Models\TaskStatus::all()
+- App\Models\TaskPriority::all()
+Шаг 4. Ты присылаешь мне ссылку на PR
+
+Например:
+
+https://github.com/ArtemichArtemich/codedoctor/pull/...
+
+И я проверяю как ревьюер:
+
+архитектура
+миграции
+модели
+нейминг
+связи
+сидеры
+ошибки
+что улучшить
+что принять
+
+ПОСЛЕ https://github.com/ArtemichArtemich/codedoctor/pull/1.diff (меняем номер пула)
+
+1. Создал ветку
+2. Сделал задачу
+3. Запушил
+4. Создал PR
+5. Прислал мне diff/patch
+6. Я проверил
+7. Только потом merge в main
