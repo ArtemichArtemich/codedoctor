@@ -177,29 +177,6 @@ jobs:
       # FTP DEPLOY
       # =====================================================
 
-      - name: Deploy to REG.RU via FTP
-        uses: SamKirkland/FTP-Deploy-Action@v4.3.5
-        with:
-          server: ${{ secrets.FTP_HOST }}
-          username: ${{ secrets.FTP_USERNAME }}
-          password: ${{ secrets.FTP_PASSWORD }}
-          local-dir: ./deploy/
-          server-dir: ./
-          exclude: |
-            **/.git*
-            **/.git*/**
-            **/.github/**
-            **/node_modules/**
-            **/vendor/**
-            **/.env
-            **/.env.*
-            **/storage/**
-
-
-      # =====================================================
-      # PRODUCTION SERVER
-      # =====================================================
-
       - name: Install dependencies and optimize Laravel
         uses: appleboy/ssh-action@v1.0.3
         with:
@@ -210,6 +187,15 @@ jobs:
             set -e
 
             cd ~/www/code-doctor.ru
+
+            PHP="/opt/php/8.2/bin/php"
+            COMPOSER="$HOME/bin/composer"
+
+            echo "PHP version:"
+            $PHP -v
+
+            echo "Composer version:"
+            $PHP $COMPOSER --version
 
             echo "Preparing Laravel directories..."
 
@@ -224,7 +210,7 @@ jobs:
 
             echo "Installing Composer dependencies..."
 
-            composer install \
+            $PHP $COMPOSER install \
               --no-dev \
               --prefer-dist \
               --optimize-autoloader \
@@ -232,18 +218,18 @@ jobs:
 
             echo "Clearing Laravel caches..."
 
-            php artisan config:clear
-            php artisan cache:clear
-            php artisan route:clear
-            php artisan view:clear
+            $PHP artisan config:clear
+            $PHP artisan cache:clear
+            $PHP artisan route:clear
+            $PHP artisan view:clear
 
             echo "Running migrations..."
 
-            php artisan migrate --force
+            $PHP artisan migrate --force
 
             echo "Caching Laravel..."
 
-            php artisan config:cache
-            php artisan route:cache
+            $PHP artisan config:cache
+            $PHP artisan route:cache
 
             echo "Deploy completed successfully."
